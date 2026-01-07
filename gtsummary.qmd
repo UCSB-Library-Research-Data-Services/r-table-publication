@@ -2,3 +2,105 @@
 title: "Beautiful Tables for Models"
 ---
 
+## Introduction to `gtsummary`
+
+Next, we'll dive into the `gtsummary` package, an extension of `gt` that can incorporate model outputs into tables.
+
+As with all R packages, we'll first need to install the package, then call it for use during this session.
+
+```{r label='install_load', eval=FALSE}
+install.packages("gtsummary")
+library(gtsummary)
+```
+
+```{r label='load2', echo=FALSE}
+library(gtsummary)
+```
+
+
+## Sample data
+
+We'll use the same sample data from [Adamczyk & Shurin 2016](https://datadryad.org/dataset/doi:10.5061/dryad.6tn4h) as during the `gt` section.
+
+If you haven't already, download [Adamczyk_PLOSdata.csv](https://datadryad.org/downloads/file_stream/33666) then import the csv, assigning to a dataframe called `data`:
+
+```{r label='read_in_data', eval=FALSE}
+data <- read.csv("Downloads/Adamczyk_PLOSdata.csv")
+```
+
+```{r label='read_in_data2', echo=FALSE}
+data <- read.csv("C:/Users/slabou/Downloads/Adamczyk_PLOSdata.csv")
+```
+
+## Descriptive statistics
+
+The base R approach to getting summary statistics for a dataset results in a thorough, but not well-formatted for publication, table.
+
+```{r label='base_summary'}
+summary(data)
+```
+The equivalent summary statistics function from `gtsummary` is `tbl_summary()`.
+
+```{r label='tbl_summary'}
+tbl_summary(data)
+```
+
+The default summary statistic presented depends on variable type. Categorical variables get counts and percentages while continuous variables get `median(first quartile, third quartile)`. Any NA values are listed in a separate row as "unknown".
+
+These defaults are customizable. For instance, if we wanted only a subset of variables and for continuous variables to include minimum, median, and maximum:
+
+```{r label='customize_descriptive'}
+data %>%  
+  tbl_summary(
+    include = c(lake, h2o_temp_c, chlorophyll_a_ugL),
+    statistic = list(
+      #change just way continuous vars are presented
+      all_continuous() ~ "{median} ({min}, {max})"
+    ),
+  )
+```
+
+_Note: ``gtsummary` uses |> as a pipe operator. The `tidyverse` %>% will also work and is used here._
+
+We can also produce crosstab tables, for instance with descriptive statistics for selected variables for each lake.
+
+```{r label='crosstab'}
+data %>% 
+  tbl_summary(
+    by = lake,
+    include = c(h2o_temp_c, chlorophyll_a_ugL),
+    statistic = list(
+      #change just way continuous vars are presented
+      all_continuous() ~ "{median} ({min}, {max})"
+    )
+  )
+```
+
+And customize the table with better labels and updated NA indicator:
+
+```{r label='customize_labels'}
+data %>% 
+  tbl_summary(
+    by = lake,
+    include = c(h2o_temp_c, chlorophyll_a_ugL),
+    statistic = list(
+      #change just way continuous vars are presented
+      all_continuous() ~ "{median} ({min}, {max})"
+    ),
+    label = list(h2o_temp_c = "Water Temperature (C)", chlorophyll_a_ugL = "Chlorophyll a (ugL)"),
+    missing_text = "Missing values"
+  )
+```
+
+## Statistical results
+
+
+## Additional resources
+
+* [Primary website for gtsummary](https://www.danieldsjoberg.com/gtsummary/) including how to [cite use of the package](https://www.danieldsjoberg.com/gtsummary/authors.html#citation).
+* gtsummary [reference manual](https://cran.r-project.org/web/packages/gtsummary/refman/gtsummary.html) with complete details on functions and arguments.
+* Examples of [gtsummary in practice from R Graph Gallery](https://r-graph-gallery.com/package/gtsummary.html). 
+
+## Data reference
+
+Adamczyk, Emily M.; Shurin, Jonathan B. (2016). Data from: Seasonal changes in plankton food web structure and carbon dioxide flux from Southern California reservoirs [Dataset]. Dryad. [https://doi.org/10.5061/dryad.6tn4h](https://doi.org/10.5061/dryad.6tn4h)
