@@ -29,6 +29,8 @@ jobs:
             any::knitr
             any::rmarkdown
             any::reticulate
+            any::gt
+            any::gtsummary
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
