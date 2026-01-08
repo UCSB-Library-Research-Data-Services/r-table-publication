@@ -9,7 +9,7 @@ Next, we'll dive into the `gtsummary` package, an extension of `gt` that can inc
 As with all R packages, we'll first need to install the package, then call it for use during this session.
 
 ```{r label='install_load', eval=FALSE}
-install.packages("gtsummary")
+# install.packages("gtsummary")
 library(gtsummary)
 ```
 
@@ -22,14 +22,10 @@ library(gtsummary)
 
 We'll use the same sample data from [Adamczyk & Shurin 2016](https://datadryad.org/dataset/doi:10.5061/dryad.6tn4h) as during the `gt` section.
 
-If you haven't already, download [Adamczyk_PLOSdata.csv](https://datadryad.org/downloads/file_stream/33666) then import the csv, assigning to a dataframe called `data`:
+If you haven't already, download [Adamczyk_PLOSdata.csv](https://datadryad.org/downloads/file_stream/33666) to the `data` folder in this repository and then import the csv, assigning to a dataframe called `data`:
 
-```{r label='read_in_data', eval=FALSE}
-data <- read.csv("Downloads/Adamczyk_PLOSdata.csv")
-```
-
-```{r label='read_in_data2', echo=FALSE}
-data <- read.csv("C:/Users/slabou/Downloads/Adamczyk_PLOSdata.csv")
+```{r label='read_in_data'}
+data <- read.csv("data/Adamczyk_PLOSdata.csv")
 ```
 
 ## Descriptive statistics
