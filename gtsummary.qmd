@@ -8,14 +8,11 @@ Next, we'll dive into the `gtsummary` package, an extension of `gt` that can inc
 
 As with all R packages, we'll first need to install the package, then call it for use during this session.
 
-```{r label='install_load', eval=FALSE}
+```{r label='install_load'}
 # install.packages("gtsummary")
 library(gtsummary)
 ```
 
-```{r label='load2', echo=FALSE}
-library(gtsummary)
-```
 
 
 ## Sample data
