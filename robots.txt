@@ -1,1 +1,1 @@
-Sitemap: https://brunj7.github.io/r-table-publication/sitemap.xml
+Sitemap: https://UCSB-Library-Research-Data-Services.github.io/r-table-publication/sitemap.xml
