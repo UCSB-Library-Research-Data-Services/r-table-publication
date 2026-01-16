@@ -53,7 +53,7 @@ data %>%
   )
 ```
 
-_Note: ``gtsummary` uses |> as a pipe operator. The `tidyverse` %>% will also work and is used here._
+_Note: `gtsummary` uses |> as a pipe operator. The `tidyverse` %>% will also work and is used here._
 
 We can also produce crosstab tables, for instance with descriptive statistics for selected variables for each lake.
 
@@ -85,7 +85,69 @@ data %>%
   )
 ```
 
-## Statistical results
+## Statistical tests
+
+If we wanted to run statistical analyses on this data, a usual approach would be to use a separate R package to run the test and then extract values of interest, like coefficients and p-values, to put into a table. `gtsummary` streamlines this process with an all-in-one approach to formatting statistical test outputs into a table.
+
+There are many standard [statistical tests integrated into gtsummary](https://www.danieldsjoberg.com/gtsummary/reference/tests.html) including t-test, ANOVA, chi-square, regression, survey sample methods, and more.
+
+Let's look at a couple examples in practice.
+
+First, let's say we wanted to run a one-way ANOVA to compare whether chlorophyll is significantly different between the three lakes in 2013.
+
+```{r}
+# data %>% 
+#   filter(year == 2013) %>% 
+# ggplot(aes(x = julian_date, y = chlorophyll_a_ugL))+
+#   geom_point(aes(color = lake))
+```
+```{r}
+oneway.test(chlorophyll_a_ugL ~ as.factor(lake), data = data)
+```
+If we wanted to report these results, we'd have some work to do to paste this into a table format. Or, we can do the same analysis using the [`tbl_summary`](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html) function from `gtsummary` to do this for us!
+
+> The tbl_summary() function calculates descriptive statistics for continuous, categorical, and dichotomous variables in R, and presents the results in a beautiful, customizable summary table ready for publication (for example, Table 1 or demographic tables).
+
+Let's run the same one-way ANOVA as above:
+
+```{r}
+data %>% 
+  #specify what variables we want in our table: here, we want a row for chlorophyll with columns for lakes
+  tbl_summary(by = lake, include = c(chlorophyll_a_ugL)) |>
+  #specify what test to perform on which variables, to get p-values from
+  #here, a one-way ANOVA on chlorphyll
+  add_p(test = chlorophyll_a_ugL ~ "oneway.test")
+```
+
+#### [STILL DRAFTING]
+
+Thinking through variables and order matters.
+
+If we don't have table with by=lakes, the test doesn't know which groups to compare for anova
+
+```{r}
+#| error: true
+data %>% 
+  #no specification that we are grouping our data into lake-specific columns
+  tbl_summary(include = c(chlorophyll_a_ugL)) |>
+  add_p(test = chlorophyll_a_ugL ~ "oneway.test")
+```
+
+Also, if we don't specify a test, `add_p()` will use the [default tests](The default test used in `add_p()` primarily depends on these factors:), which depend on whether the data is continuous or categorical, how many categories, etc.
+
+If we don't specify anova, the analysis will default to a kruskal-wallis rank sum test.
+
+>The default test used in add_p() primarily depends on these factors:
+> * whether the variable is categorical/dichotomous vs continuous
+> * number of levels in the tbl_summary(by) variable
+> * whether the add_p(group) argument is specified
+> * whether the add_p(adj.vars) argument is specified
+
+```{r}
+data %>% 
+  tbl_summary(by= lake, include = c(chlorophyll_a_ugL)) |>
+  add_p()
+```
 
 
 ## Additional resources
