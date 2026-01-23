@@ -4,9 +4,14 @@ title: "Beautiful Tables for Models"
 
 ## Introduction to `gtsummary`
 
-Next, we'll dive into the `gtsummary` package, an extension of `gt` that can incorporate model outputs into tables.
+Next, we'll use the `gtsummary` package, an extension of `gt` that can incorporate model outputs into tables.
 
-As with all R packages, we'll first need to install the package, then call it for use during this session.
+As with all R packages, we first need to install the package, then call it for use during this session.
+
+```{r include=FALSE}
+library(gt)
+```
+
 
 ```{r label='install_load'}
 # install.packages("gtsummary")
@@ -14,24 +19,19 @@ library(gtsummary)
 ```
 
 
-
-## Sample data
-
-We'll use the same sample data from [Adamczyk & Shurin 2016](https://datadryad.org/dataset/doi:10.5061/dryad.6tn4h) as during the `gt` section.
-
-If you haven't already, download [Adamczyk_PLOSdata.csv](https://datadryad.org/downloads/file_stream/33666) to the `data` folder in this repository and then import the csv, assigning to a dataframe called `data`:
-
-```{r label='read_in_data'}
-data <- read.csv("data/Adamczyk_PLOSdata.csv")
-```
-
 ## Descriptive statistics
 
 The base R approach to getting summary statistics for a dataset results in a thorough, but not well-formatted for publication, table.
 
+```{r include=FALSE}
+data <- read.csv("data/Adamczyk_PLOSdata.csv")
+```
+
+
 ```{r label='base_summary'}
 summary(data)
 ```
+
 The equivalent summary statistics function from `gtsummary` is `tbl_summary()`.
 
 ```{r label='tbl_summary'}
@@ -43,7 +43,7 @@ The default summary statistic presented depends on variable type. Categorical va
 These defaults are customizable. For instance, if we wanted only a subset of variables and for continuous variables to include minimum, median, and maximum:
 
 ```{r label='customize_descriptive'}
-data %>%  
+data |>  
   tbl_summary(
     include = c(lake, h2o_temp_c, chlorophyll_a_ugL),
     statistic = list(
@@ -53,12 +53,10 @@ data %>%
   )
 ```
 
-_Note: `gtsummary` uses |> as a pipe operator. The `tidyverse` %>% will also work and is used here._
-
 We can also produce crosstab tables, for instance with descriptive statistics for selected variables for each lake.
 
 ```{r label='crosstab'}
-data %>% 
+data |> 
   tbl_summary(
     by = lake,
     include = c(h2o_temp_c, chlorophyll_a_ugL),
@@ -72,7 +70,7 @@ data %>%
 And customize the table with better labels and updated NA indicator:
 
 ```{r label='customize_labels'}
-data %>% 
+data |> 
   tbl_summary(
     by = lake,
     include = c(h2o_temp_c, chlorophyll_a_ugL),
@@ -93,17 +91,14 @@ There are many standard [statistical tests integrated into gtsummary](https://ww
 
 Let's look at a couple examples in practice.
 
-First, let's say we wanted to run a one-way ANOVA to compare whether chlorophyll is significantly different between the three lakes in 2013.
+### Table with significance
 
-```{r}
-# data %>% 
-#   filter(year == 2013) %>% 
-# ggplot(aes(x = julian_date, y = chlorophyll_a_ugL))+
-#   geom_point(aes(color = lake))
-```
+Run a one-way ANOVA to compare whether chlorophyll is significantly different between the three lakes in 2013:
+
 ```{r}
 oneway.test(chlorophyll_a_ugL ~ as.factor(lake), data = data)
 ```
+
 If we wanted to report these results, we'd have some work to do to paste this into a table format. Or, we can do the same analysis using the [`tbl_summary`](https://www.danieldsjoberg.com/gtsummary/articles/tbl_summary.html) function from `gtsummary` to do this for us!
 
 > The tbl_summary() function calculates descriptive statistics for continuous, categorical, and dichotomous variables in R, and presents the results in a beautiful, customizable summary table ready for publication (for example, Table 1 or demographic tables).
@@ -111,7 +106,7 @@ If we wanted to report these results, we'd have some work to do to paste this in
 Let's run the same one-way ANOVA as above:
 
 ```{r}
-data %>% 
+data |> 
   #specify what variables we want in our table: here, we want a row for chlorophyll with columns for lakes
   tbl_summary(by = lake, include = c(chlorophyll_a_ugL)) |>
   #specify what test to perform on which variables, to get p-values from
@@ -119,21 +114,23 @@ data %>%
   add_p(test = chlorophyll_a_ugL ~ "oneway.test")
 ```
 
-#### [STILL DRAFTING]
+A couple caveats to be aware of:
 
-Thinking through variables and order matters.
+**1)** Structure `tbl_summary()` in line with which test will be run in `add_p()`.
 
-If we don't have table with by=lakes, the test doesn't know which groups to compare for anova
+Note that if we don't include table `by = lake` in `tbl_summary()`, the test won't know which groups to compare for this ANOVA.
 
 ```{r}
 #| error: true
-data %>% 
+data |> 
   #no specification that we are grouping our data into lake-specific columns
   tbl_summary(include = c(chlorophyll_a_ugL)) |>
   add_p(test = chlorophyll_a_ugL ~ "oneway.test")
 ```
 
-Also, if we don't specify a test, `add_p()` will use the [default tests](The default test used in `add_p()` primarily depends on these factors:), which depend on whether the data is continuous or categorical, how many categories, etc.
+**2)** Default tests will vary based on data type.
+
+We don't specify a test, `add_p()` will use the [default tests](The default test used in `add_p()` primarily depends on these factors:), which depend on whether the data is continuous or categorical, how many categories, etc.
 
 If we don't specify anova, the analysis will default to a kruskal-wallis rank sum test.
 
@@ -144,10 +141,43 @@ If we don't specify anova, the analysis will default to a kruskal-wallis rank su
 > * whether the add_p(adj.vars) argument is specified
 
 ```{r}
-data %>% 
+data |> 
   tbl_summary(by= lake, include = c(chlorophyll_a_ugL)) |>
   add_p()
 ```
+
+
+### Table with regression results [STILL DRAFTING]
+
+Predict chlorophyll from water temperature, nitrogen, phosphorus, and dissolved organic carbon.
+
+```{r}
+mod1 <- lm(chlorophyll_a_ugL ~ h2o_temp_c + total_nitrogen_mgL + total_phosphorus._mgL + dissolved_organic_carbon_mgL, data = data)
+```
+
+```{r}
+summary(mod1)
+```
+
+```{r}
+tbl_regression(mod1)
+```
+
+Use a [mix of `gt` and `gtsummary` functions for formatting](https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html#customize-output) the output table.
+
+Combine with `gt` formatting by making the table (currently a tbl_regression object) into a gt_tbl object, to do other gt formatting
+
+```{r}
+tbl_regression(mod1,
+               #update variable names
+               label = list(h2o_temp_c = "Water Temperature (C)", total_nitrogen_mgL = "Total Nitrogen (mgL)", total_phosphorus._mgL = "Total Phosphorus (mgL)", dissolved_organic_carbon_mgL = "Dissolved Organic Carbon (mgL)")) |>
+  #make gt object
+   as_gt() |>
+  #add source note
+   gt::tab_source_note(source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
+  )
+```
+
 
 
 ## Additional resources
