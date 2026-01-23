@@ -31,6 +31,7 @@ jobs:
             any::reticulate
             any::gt
             any::gtsummary
+            any::tidyverse
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
