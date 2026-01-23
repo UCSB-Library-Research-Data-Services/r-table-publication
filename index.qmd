@@ -13,13 +13,16 @@ Note that this session assumes a working knowledge of R; we will dive straight i
 **Instructors**: Stephanie Labou & Julien Brun
 
 
-## About the data
+---
 
-The dataset used for this workshop is from the Journal article "Seasonal changes in plankton food web structure and carbon dioxide flux from Southern California reservoirs" <https://doi.org/10.1371/journal.pone.0140464>
+### About the data
+
+The dataset used for this workshop is from the Journal article _"Seasonal changes in plankton food web structure and carbon dioxide flux from Southern California reservoirs"_ by and Adamczyk & Shurin (2015)
+ <https://doi.org/10.1371/journal.pone.0140464>
 
 The dataset used has been downloaded from Dryad: <https://doi.org/10.5061/dryad.6tn4h>
 
-### Here is the attribute level metadata
+#### Attribute level metadata
 
 The columns in this data file are the variables measured. The rows are the lakes (Poway, Murray, Miramar) and dates sampled.
 
