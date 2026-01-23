@@ -32,6 +32,8 @@ jobs:
             any::gt
             any::gtsummary
             any::tidyverse
+            any::broom
+            any::broom.helpers
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
