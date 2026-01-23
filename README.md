@@ -4,7 +4,7 @@ Are you tired of spending your time manually formatting tables for article submi
 
 Note that this session assumes a working knowledge of R; we will dive straight into main table content without a general overview of R.
 
-**Workshop time**: UC Love Data Week, 2/11/2026, 2:00-3:00pm
+**Workshop time**: UC Love Data Week, 2/11/2026, 2:00-2:50pm
 
 **Workshop registration**: https://ucsd.zoom.us/meeting/register/U2EwnvgUQiGL9VkivKWK-Q#/registration
 
