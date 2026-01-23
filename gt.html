@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -113,8 +148,26 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link active" data-scroll-target="#load-the-data">Load the data</a></li>
+  <li><a href="#have-a-look-at-the-data" id="toc-have-a-look-at-the-data" class="nav-link" data-scroll-target="#have-a-look-at-the-data">Have a look at the data</a></li>
+  <li><a href="#now-lets-make-this-a-nice-table" id="toc-now-lets-make-this-a-nice-table" class="nav-link" data-scroll-target="#now-lets-make-this-a-nice-table">Now let’s make this a nice table</a></li>
+  <li><a href="#add-reference" id="toc-add-reference" class="nav-link" data-scroll-target="#add-reference">Add reference</a></li>
+  <li><a href="#with-more-measurements" id="toc-with-more-measurements" class="nav-link" data-scroll-target="#with-more-measurements">With more measurements</a></li>
+  <li><a href="#add-title-and-footnote" id="toc-add-title-and-footnote" class="nav-link" data-scroll-target="#add-title-and-footnote">Add title and Footnote</a>
+  <ul class="collapse">
+  <li><a href="#adding-headers-for-multiple-columns" id="toc-adding-headers-for-multiple-columns" class="nav-link" data-scroll-target="#adding-headers-for-multiple-columns">Adding headers for multiple columns</a></li>
+  <li><a href="#more-styling-on-sub-headers" id="toc-more-styling-on-sub-headers" class="nav-link" data-scroll-target="#more-styling-on-sub-headers">More styling on sub headers</a></li>
+  <li><a href="#simplify-the-column-names" id="toc-simplify-the-column-names" class="nav-link" data-scroll-target="#simplify-the-column-names">Simplify the column names</a></li>
+  <li><a href="#limiting-to-2-decimals" id="toc-limiting-to-2-decimals" class="nav-link" data-scroll-target="#limiting-to-2-decimals">Limiting to 2 decimals</a></li>
+  <li><a href="#styling" id="toc-styling" class="nav-link" data-scroll-target="#styling">Styling</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -138,8 +191,5172 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>We are going to reproduce some of the tables of this paper <em>Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs</em> <a href="https://doi.org/10.1371/journal.pone.0140464" class="uri">https://doi.org/10.1371/journal.pone.0140464</a></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages("gt")</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.6
+✔ forcats   1.0.1     ✔ stringr   1.6.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.2
+✔ purrr     1.2.1     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<section id="load-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="load-the-data">Load the data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/Adamczyk_PLOSdata.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="have-a-look-at-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="have-a-look-at-the-data">Have a look at the data</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">glimpse</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 150
+Columns: 24
+$ year                                &lt;int&gt; 2013, 2013, 2013, 2013, 2013, 2013…
+$ month                               &lt;int&gt; 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7…
+$ day                                 &lt;int&gt; 26, 26, 26, 3, 3, 3, 10, 10, 10, 1…
+$ julian_date                         &lt;int&gt; 13177, 13177, 13177, 13184, 13184,…
+$ sampling_date                       &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4…
+$ lake                                &lt;chr&gt; "Murray", "Miramar", "Poway", "Mur…
+$ h2o_temp_c                          &lt;dbl&gt; 26.11111, 24.44444, 25.55556, 25.8…
+$ air_temp_c                          &lt;dbl&gt; 27.22222, 30.50000, 32.38889, 24.1…
+$ wind_speed_kph                      &lt;dbl&gt; 6.437376, 9.656064, 6.437376, 10.4…
+$ ph                                  &lt;dbl&gt; 8.85, 8.35, 8.99, 8.78, 8.45, 9.10…
+$ total_alkalinity_ppm                &lt;int&gt; 196, 203, 172, 261, 271, 240, 91, …
+$ chlorophyll_a_ugL                   &lt;dbl&gt; 4.30, 2.54, 1.03, 5.10, 2.29, 2.01…
+$ salinity_ppt                        &lt;dbl&gt; 0.3796530, 0.3787916, 0.3497159, 0…
+$ pco2_water_ppm                      &lt;dbl&gt; 173.438, 582.045, 106.694, 273.342…
+$ bacteria_number_per_L               &lt;int&gt; NA, 14204, 18078, 10330, 18078, 14…
+$ total_nitrogen_mgL                  &lt;dbl&gt; 3.170, 2.530, 1.630, 3.620, 3.120,…
+$ total_phosphorus._mgL               &lt;dbl&gt; 0.01720, 0.00837, 0.00868, 0.02150…
+$ dissolved_organic_carbon_mgL        &lt;dbl&gt; 4.450445, 2.726669, 3.482022, 5.21…
+$ particulate_organic_nitrogen_mgL    &lt;dbl&gt; 0.06960000, NA, 0.02266667, 0.0696…
+$ particulate_organic_carbon_mgL      &lt;dbl&gt; 0.30894545, NA, 0.07393939, 0.3427…
+$ co2_flux_mmol_m_day                 &lt;dbl&gt; -2.039, 3.738, -2.646, -2.987, 6.5…
+$ pco2_atmosphere_ppm                 &lt;dbl&gt; 399.06, 399.06, 399.06, NA, NA, NA…
+$ zooplankton_community_avg_legnth_mm &lt;dbl&gt; 0.2245817, 0.7466187, 0.8807347, 0…
+$ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.3057214, 3…</code></pre>
+</div>
+</div>
+<p>Let’s have a look at the first rows of our dataset</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span> <span class="fu">head</span>() <span class="sc">|&gt;</span> <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="wraymayhrk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wraymayhrk table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wraymayhrk thead, #wraymayhrk tbody, #wraymayhrk tfoot, #wraymayhrk tr, #wraymayhrk td, #wraymayhrk th {
+  border-style: none;
+}
+
+#wraymayhrk p {
+  margin: 0;
+  padding: 0;
+}
+
+#wraymayhrk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wraymayhrk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wraymayhrk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wraymayhrk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wraymayhrk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wraymayhrk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wraymayhrk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wraymayhrk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wraymayhrk .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wraymayhrk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wraymayhrk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wraymayhrk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wraymayhrk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wraymayhrk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wraymayhrk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wraymayhrk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wraymayhrk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wraymayhrk .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wraymayhrk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wraymayhrk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wraymayhrk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wraymayhrk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wraymayhrk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wraymayhrk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wraymayhrk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wraymayhrk .gt_left {
+  text-align: left;
+}
+
+#wraymayhrk .gt_center {
+  text-align: center;
+}
+
+#wraymayhrk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wraymayhrk .gt_font_normal {
+  font-weight: normal;
+}
+
+#wraymayhrk .gt_font_bold {
+  font-weight: bold;
+}
+
+#wraymayhrk .gt_font_italic {
+  font-style: italic;
+}
+
+#wraymayhrk .gt_super {
+  font-size: 65%;
+}
+
+#wraymayhrk .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wraymayhrk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wraymayhrk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wraymayhrk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wraymayhrk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wraymayhrk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wraymayhrk .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wraymayhrk .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wraymayhrk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
+<th id="month" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">month</th>
+<th id="day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">day</th>
+<th id="julian_date" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">julian_date</th>
+<th id="sampling_date" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">sampling_date</th>
+<th id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th id="h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">h2o_temp_c</th>
+<th id="air_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">air_temp_c</th>
+<th id="wind_speed_kph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">wind_speed_kph</th>
+<th id="ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">ph</th>
+<th id="total_alkalinity_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_alkalinity_ppm</th>
+<th id="chlorophyll_a_ugL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">chlorophyll_a_ugL</th>
+<th id="salinity_ppt" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">salinity_ppt</th>
+<th id="pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pco2_water_ppm</th>
+<th id="bacteria_number_per_L" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">bacteria_number_per_L</th>
+<th id="total_nitrogen_mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_nitrogen_mgL</th>
+<th id="total_phosphorus._mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_phosphorus._mgL</th>
+<th id="dissolved_organic_carbon_mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">dissolved_organic_carbon_mgL</th>
+<th id="particulate_organic_nitrogen_mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">particulate_organic_nitrogen_mgL</th>
+<th id="particulate_organic_carbon_mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">particulate_organic_carbon_mgL</th>
+<th id="co2_flux_mmol_m_day" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">co2_flux_mmol_m_day</th>
+<th id="pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pco2_atmosphere_ppm</th>
+<th id="zooplankton_community_avg_legnth_mm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">zooplankton_community_avg_legnth_mm</th>
+<th id="zooplankton_community_biomass_mgL" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">zooplankton_community_biomass_mgL</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">6</td>
+<td class="gt_row gt_right" headers="day">26</td>
+<td class="gt_row gt_right" headers="julian_date">13177</td>
+<td class="gt_row gt_right" headers="sampling_date">1</td>
+<td class="gt_row gt_left" headers="lake">Murray</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">26.11111</td>
+<td class="gt_row gt_right" headers="air_temp_c">27.22222</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">6.437376</td>
+<td class="gt_row gt_right" headers="ph">8.85</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">196</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">4.30</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.3796530</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">173.438</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">NA</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">3.17</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.01720</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">4.450445</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">0.06960000</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">0.30894545</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">-2.039</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">399.06</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.2245817</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">0.9987292</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">6</td>
+<td class="gt_row gt_right" headers="day">26</td>
+<td class="gt_row gt_right" headers="julian_date">13177</td>
+<td class="gt_row gt_right" headers="sampling_date">1</td>
+<td class="gt_row gt_left" headers="lake">Miramar</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">24.44444</td>
+<td class="gt_row gt_right" headers="air_temp_c">30.50000</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">9.656064</td>
+<td class="gt_row gt_right" headers="ph">8.35</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">203</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">2.54</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.3787916</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">582.045</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">14204</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">2.53</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.00837</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">2.726669</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">NA</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">NA</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">3.738</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">399.06</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.7466187</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">4.9275362</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">6</td>
+<td class="gt_row gt_right" headers="day">26</td>
+<td class="gt_row gt_right" headers="julian_date">13177</td>
+<td class="gt_row gt_right" headers="sampling_date">1</td>
+<td class="gt_row gt_left" headers="lake">Poway</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">25.55556</td>
+<td class="gt_row gt_right" headers="air_temp_c">32.38889</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">6.437376</td>
+<td class="gt_row gt_right" headers="ph">8.99</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">172</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">1.03</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.3497159</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">106.694</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">18078</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">1.63</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.00868</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">3.482022</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">0.02266667</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">0.07393939</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">-2.646</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">399.06</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.8807347</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">9.3057214</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">7</td>
+<td class="gt_row gt_right" headers="day">3</td>
+<td class="gt_row gt_right" headers="julian_date">13184</td>
+<td class="gt_row gt_right" headers="sampling_date">2</td>
+<td class="gt_row gt_left" headers="lake">Murray</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">25.83333</td>
+<td class="gt_row gt_right" headers="air_temp_c">24.16667</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">10.460736</td>
+<td class="gt_row gt_right" headers="ph">8.78</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">261</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">5.10</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.2849283</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">273.342</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">10330</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">3.62</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.02150</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">5.212524</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">0.06964706</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">0.34271658</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">-2.987</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">NA</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.3035989</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">3.4809318</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">7</td>
+<td class="gt_row gt_right" headers="day">3</td>
+<td class="gt_row gt_right" headers="julian_date">13184</td>
+<td class="gt_row gt_right" headers="sampling_date">2</td>
+<td class="gt_row gt_left" headers="lake">Miramar</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">26.94444</td>
+<td class="gt_row gt_right" headers="air_temp_c">25.22222</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">11.265408</td>
+<td class="gt_row gt_right" headers="ph">8.45</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">271</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">2.29</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.1741368</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">635.311</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">18078</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">3.12</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.02190</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">3.404073</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">0.03226667</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">0.25940606</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">6.549</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">NA</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.5070355</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">4.7456874</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="year">2013</td>
+<td class="gt_row gt_right" headers="month">7</td>
+<td class="gt_row gt_right" headers="day">3</td>
+<td class="gt_row gt_right" headers="julian_date">13184</td>
+<td class="gt_row gt_right" headers="sampling_date">2</td>
+<td class="gt_row gt_left" headers="lake">Poway</td>
+<td class="gt_row gt_right" headers="h2o_temp_c">22.11111</td>
+<td class="gt_row gt_right" headers="air_temp_c">27.16667</td>
+<td class="gt_row gt_right" headers="wind_speed_kph">0.804672</td>
+<td class="gt_row gt_right" headers="ph">9.10</td>
+<td class="gt_row gt_right" headers="total_alkalinity_ppm">240</td>
+<td class="gt_row gt_right" headers="chlorophyll_a_ugL">2.01</td>
+<td class="gt_row gt_right" headers="salinity_ppt">0.3805866</td>
+<td class="gt_row gt_right" headers="pco2_water_ppm">108.509</td>
+<td class="gt_row gt_right" headers="bacteria_number_per_L">14204</td>
+<td class="gt_row gt_right" headers="total_nitrogen_mgL">2.53</td>
+<td class="gt_row gt_right" headers="total_phosphorus._mgL">0.02830</td>
+<td class="gt_row gt_right" headers="dissolved_organic_carbon_mgL">5.087733</td>
+<td class="gt_row gt_right" headers="particulate_organic_nitrogen_mgL">0.01880000</td>
+<td class="gt_row gt_right" headers="particulate_organic_carbon_mgL">0.16833939</td>
+<td class="gt_row gt_right" headers="co2_flux_mmol_m_day">-0.042</td>
+<td class="gt_row gt_right" headers="pco2_atmosphere_ppm">NA</td>
+<td class="gt_row gt_right" headers="zooplankton_community_avg_legnth_mm">0.5773348</td>
+<td class="gt_row gt_right" headers="zooplankton_community_biomass_mgL">3.2551055</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<p>Now let’s create a summary table of the average air temperature for each basin</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>data_air <span class="ot">&lt;-</span> temp_basin <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, lake, air_temp_c) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, lake) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">average_air_temp =</span> <span class="fu">mean</span>(air_temp_c))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_air</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   year [2]
+   year lake    average_air_temp
+  &lt;int&gt; &lt;chr&gt;              &lt;dbl&gt;
+1  2013 Miramar             24.9
+2  2013 Murray              24.4
+3  2013 Poway               27.4
+4  2014 Miramar             20.6
+5  2014 Murray              21.1
+6  2014 Poway               20.9</code></pre>
+</div>
+</div>
+</section>
+<section id="now-lets-make-this-a-nice-table" class="level2">
+<h2 class="anchored" data-anchor-id="now-lets-make-this-a-nice-table">Now let’s make this a nice table</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gt_air <span class="ot">&lt;-</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  data_air <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average air temperature (C) per lake and year"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"major reservoirs in San Diego County"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>gt_air</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="xbyiodxnrc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xbyiodxnrc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xbyiodxnrc thead, #xbyiodxnrc tbody, #xbyiodxnrc tfoot, #xbyiodxnrc tr, #xbyiodxnrc td, #xbyiodxnrc th {
+  border-style: none;
+}
+
+#xbyiodxnrc p {
+  margin: 0;
+  padding: 0;
+}
+
+#xbyiodxnrc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xbyiodxnrc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xbyiodxnrc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xbyiodxnrc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xbyiodxnrc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xbyiodxnrc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xbyiodxnrc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xbyiodxnrc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xbyiodxnrc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xbyiodxnrc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xbyiodxnrc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xbyiodxnrc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xbyiodxnrc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xbyiodxnrc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xbyiodxnrc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbyiodxnrc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xbyiodxnrc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xbyiodxnrc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xbyiodxnrc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbyiodxnrc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xbyiodxnrc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbyiodxnrc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xbyiodxnrc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbyiodxnrc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xbyiodxnrc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xbyiodxnrc .gt_left {
+  text-align: left;
+}
+
+#xbyiodxnrc .gt_center {
+  text-align: center;
+}
+
+#xbyiodxnrc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xbyiodxnrc .gt_font_normal {
+  font-weight: normal;
+}
+
+#xbyiodxnrc .gt_font_bold {
+  font-weight: bold;
+}
+
+#xbyiodxnrc .gt_font_italic {
+  font-style: italic;
+}
+
+#xbyiodxnrc .gt_super {
+  font-size: 65%;
+}
+
+#xbyiodxnrc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xbyiodxnrc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xbyiodxnrc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xbyiodxnrc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xbyiodxnrc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xbyiodxnrc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xbyiodxnrc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xbyiodxnrc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xbyiodxnrc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Average air temperature (C) per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th id="average_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">average_air_temp</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">24.92844</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">24.35022</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">27.36000</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">20.55600</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">21.10280</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">20.87200</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="add-reference" class="level2">
+<h2 class="anchored" data-anchor-id="add-reference">Add reference</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>gt_air <span class="ot">&lt;-</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  data_air <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average air temperature (C) per lake and year"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"major reservoirs in San Diego County"</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">tab_source_note</span>(</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_"</span>)</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>gt_air</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="zlsqvirygl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zlsqvirygl table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#zlsqvirygl thead, #zlsqvirygl tbody, #zlsqvirygl tfoot, #zlsqvirygl tr, #zlsqvirygl td, #zlsqvirygl th {
+  border-style: none;
+}
+
+#zlsqvirygl p {
+  margin: 0;
+  padding: 0;
+}
+
+#zlsqvirygl .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#zlsqvirygl .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zlsqvirygl .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zlsqvirygl .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zlsqvirygl .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zlsqvirygl .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zlsqvirygl .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zlsqvirygl .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zlsqvirygl .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#zlsqvirygl .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#zlsqvirygl .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zlsqvirygl .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zlsqvirygl .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zlsqvirygl .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zlsqvirygl .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlsqvirygl .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zlsqvirygl .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zlsqvirygl .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#zlsqvirygl .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlsqvirygl .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zlsqvirygl .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlsqvirygl .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zlsqvirygl .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlsqvirygl .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zlsqvirygl .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zlsqvirygl .gt_left {
+  text-align: left;
+}
+
+#zlsqvirygl .gt_center {
+  text-align: center;
+}
+
+#zlsqvirygl .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zlsqvirygl .gt_font_normal {
+  font-weight: normal;
+}
+
+#zlsqvirygl .gt_font_bold {
+  font-weight: bold;
+}
+
+#zlsqvirygl .gt_font_italic {
+  font-style: italic;
+}
+
+#zlsqvirygl .gt_super {
+  font-size: 65%;
+}
+
+#zlsqvirygl .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#zlsqvirygl .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zlsqvirygl .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#zlsqvirygl .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#zlsqvirygl .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#zlsqvirygl .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#zlsqvirygl .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#zlsqvirygl .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#zlsqvirygl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Average air temperature (C) per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th id="average_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">average_air_temp</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">24.92844</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">24.35022</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  average_air_temp">27.36000</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="2" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">20.55600</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">21.10280</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  average_air_temp">20.87200</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="2" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="with-more-measurements" class="level2">
+<h2 class="anchored" data-anchor-id="with-more-measurements">With more measurements</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data_measurements <span class="ot">&lt;-</span> temp_basin <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, lake, air_temp_c, pco2_atmosphere_ppm, h2o_temp_c, ph, pco2_water_ppm) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, lake) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">avg_air_temp =</span> <span class="fu">mean</span>(air_temp_c),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_pco2_atmosphere_ppm =</span> <span class="fu">mean</span>(pco2_atmosphere_ppm, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_h2o_temp_c =</span> <span class="fu">mean</span>(h2o_temp_c, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_ph =</span> <span class="fu">mean</span>(ph, <span class="at">na.rm=</span><span class="cn">TRUE</span>),</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>              <span class="at">avg_pco2_water_ppm =</span> <span class="fu">mean</span>(pco2_water_ppm, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'year'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+</div>
+</section>
+<section id="add-title-and-footnote" class="level1">
+<h1>Add title and Footnote</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="ot">&lt;-</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  data_measurements <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average measurements per lake and year"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"major reservoirs in San Diego County"</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">tab_source_note</span>(</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="vjqqkxxvex" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vjqqkxxvex table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#vjqqkxxvex thead, #vjqqkxxvex tbody, #vjqqkxxvex tfoot, #vjqqkxxvex tr, #vjqqkxxvex td, #vjqqkxxvex th {
+  border-style: none;
+}
+
+#vjqqkxxvex p {
+  margin: 0;
+  padding: 0;
+}
+
+#vjqqkxxvex .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#vjqqkxxvex .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#vjqqkxxvex .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#vjqqkxxvex .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#vjqqkxxvex .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#vjqqkxxvex .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#vjqqkxxvex .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#vjqqkxxvex .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#vjqqkxxvex .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#vjqqkxxvex .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#vjqqkxxvex .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#vjqqkxxvex .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#vjqqkxxvex .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#vjqqkxxvex .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#vjqqkxxvex .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vjqqkxxvex .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#vjqqkxxvex .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#vjqqkxxvex .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#vjqqkxxvex .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vjqqkxxvex .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#vjqqkxxvex .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vjqqkxxvex .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#vjqqkxxvex .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vjqqkxxvex .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#vjqqkxxvex .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#vjqqkxxvex .gt_left {
+  text-align: left;
+}
+
+#vjqqkxxvex .gt_center {
+  text-align: center;
+}
+
+#vjqqkxxvex .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#vjqqkxxvex .gt_font_normal {
+  font-weight: normal;
+}
+
+#vjqqkxxvex .gt_font_bold {
+  font-weight: bold;
+}
+
+#vjqqkxxvex .gt_font_italic {
+  font-style: italic;
+}
+
+#vjqqkxxvex .gt_super {
+  font-size: 65%;
+}
+
+#vjqqkxxvex .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#vjqqkxxvex .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#vjqqkxxvex .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#vjqqkxxvex .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#vjqqkxxvex .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#vjqqkxxvex .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#vjqqkxxvex .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#vjqqkxxvex .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#vjqqkxxvex div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings header">
+<th id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_air_temp</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_atmosphere_ppm</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_h2o_temp_c</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_ph</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_water_ppm</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.92844</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0941</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.94800</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.4264</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.8672</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.35022</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0905</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.47222</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.6096</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">218.0030</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36000</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.1236</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34178</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.7964</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.2890</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.55600</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6909</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.46750</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.2524</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">335.5639</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10280</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6973</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.25739</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.4504</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.7339</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.87200</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.7452</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.07800</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.5016</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">172.2162</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+<section id="adding-headers-for-multiple-columns" class="level2">
+<h2 class="anchored" data-anchor-id="adding-headers-for-multiple-columns">Adding headers for multiple columns</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="ot">&lt;-</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  data_measurements <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average measurements per lake and year"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"major reservoirs in San Diego County"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">tab_source_note</span>(</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_"</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Air"</span>,</span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_air_temp, avg_pco2_atmosphere_ppm)</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="st">"Water"</span>,</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="qmdlyvhyxc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qmdlyvhyxc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qmdlyvhyxc thead, #qmdlyvhyxc tbody, #qmdlyvhyxc tfoot, #qmdlyvhyxc tr, #qmdlyvhyxc td, #qmdlyvhyxc th {
+  border-style: none;
+}
+
+#qmdlyvhyxc p {
+  margin: 0;
+  padding: 0;
+}
+
+#qmdlyvhyxc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qmdlyvhyxc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qmdlyvhyxc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qmdlyvhyxc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qmdlyvhyxc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qmdlyvhyxc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qmdlyvhyxc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qmdlyvhyxc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qmdlyvhyxc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qmdlyvhyxc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qmdlyvhyxc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qmdlyvhyxc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qmdlyvhyxc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qmdlyvhyxc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qmdlyvhyxc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmdlyvhyxc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qmdlyvhyxc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qmdlyvhyxc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qmdlyvhyxc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmdlyvhyxc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qmdlyvhyxc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmdlyvhyxc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qmdlyvhyxc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmdlyvhyxc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qmdlyvhyxc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qmdlyvhyxc .gt_left {
+  text-align: left;
+}
+
+#qmdlyvhyxc .gt_center {
+  text-align: center;
+}
+
+#qmdlyvhyxc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qmdlyvhyxc .gt_font_normal {
+  font-weight: normal;
+}
+
+#qmdlyvhyxc .gt_font_bold {
+  font-weight: bold;
+}
+
+#qmdlyvhyxc .gt_font_italic {
+  font-style: italic;
+}
+
+#qmdlyvhyxc .gt_super {
+  font-size: 65%;
+}
+
+#qmdlyvhyxc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qmdlyvhyxc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qmdlyvhyxc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qmdlyvhyxc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qmdlyvhyxc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qmdlyvhyxc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qmdlyvhyxc .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#qmdlyvhyxc .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#qmdlyvhyxc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th colspan="2" id="Air" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Air
+</div></th>
+<th colspan="3" id="Water" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+Water
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_air_temp</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_atmosphere_ppm</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_h2o_temp_c</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_ph</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_water_ppm</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.92844</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0941</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.94800</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.4264</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.8672</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.35022</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0905</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.47222</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.6096</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">218.0030</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36000</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.1236</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34178</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.7964</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.2890</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.55600</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6909</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.46750</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.2524</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">335.5639</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10280</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6973</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.25739</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.4504</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.7339</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.87200</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.7452</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.07800</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.5016</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">172.2162</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="more-styling-on-sub-headers" class="level2">
+<h2 class="anchored" data-anchor-id="more-styling-on-sub-headers">More styling on sub headers</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="ot">&lt;-</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  data_measurements <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Average measurements per lake and year"</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"major reservoirs in San Diego County"</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a> <span class="fu">tab_source_note</span>(</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">source_note =</span> <span class="fu">md</span>(<span class="st">"Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Air**"</span>),</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_air_temp, avg_pco2_atmosphere_ppm)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">label =</span> <span class="fu">md</span>(<span class="st">"**Water**"</span>),</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">c</span>(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="xtkfqrvvmp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xtkfqrvvmp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xtkfqrvvmp thead, #xtkfqrvvmp tbody, #xtkfqrvvmp tfoot, #xtkfqrvvmp tr, #xtkfqrvvmp td, #xtkfqrvvmp th {
+  border-style: none;
+}
+
+#xtkfqrvvmp p {
+  margin: 0;
+  padding: 0;
+}
+
+#xtkfqrvvmp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xtkfqrvvmp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xtkfqrvvmp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xtkfqrvvmp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xtkfqrvvmp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xtkfqrvvmp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xtkfqrvvmp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xtkfqrvvmp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xtkfqrvvmp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xtkfqrvvmp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xtkfqrvvmp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xtkfqrvvmp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xtkfqrvvmp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xtkfqrvvmp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xtkfqrvvmp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtkfqrvvmp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xtkfqrvvmp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xtkfqrvvmp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xtkfqrvvmp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtkfqrvvmp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xtkfqrvvmp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtkfqrvvmp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xtkfqrvvmp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtkfqrvvmp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xtkfqrvvmp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtkfqrvvmp .gt_left {
+  text-align: left;
+}
+
+#xtkfqrvvmp .gt_center {
+  text-align: center;
+}
+
+#xtkfqrvvmp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xtkfqrvvmp .gt_font_normal {
+  font-weight: normal;
+}
+
+#xtkfqrvvmp .gt_font_bold {
+  font-weight: bold;
+}
+
+#xtkfqrvvmp .gt_font_italic {
+  font-style: italic;
+}
+
+#xtkfqrvvmp .gt_super {
+  font-size: 65%;
+}
+
+#xtkfqrvvmp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xtkfqrvvmp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xtkfqrvvmp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xtkfqrvvmp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xtkfqrvvmp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xtkfqrvvmp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xtkfqrvvmp .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xtkfqrvvmp .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xtkfqrvvmp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th colspan="2" id="**Air**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Air</strong>
+</div></th>
+<th colspan="3" id="**Water**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Water</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_air_temp</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_atmosphere_ppm</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_h2o_temp_c</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_ph</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">avg_pco2_water_ppm</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.92844</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0941</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.94800</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.4264</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.8672</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.35022</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0905</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.47222</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.6096</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">218.0030</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36000</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.1236</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34178</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.7964</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.2890</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.55600</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6909</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.46750</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.2524</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">335.5639</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10280</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6973</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.25739</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.4504</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.7339</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.87200</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.7452</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.07800</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.5016</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">172.2162</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="simplify-the-column-names" class="level2">
+<h2 class="anchored" data-anchor-id="simplify-the-column-names">Simplify the column names</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>gt_measurements  <span class="ot">&lt;-</span> gt_measurements <span class="sc">|&gt;</span> <span class="fu">cols_label</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_air_temp =</span> <span class="st">"Temp (C)"</span>,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pco2_atmosphere_ppm =</span> <span class="st">"pC02 (ppm)"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_h2o_temp_c =</span> <span class="st">"Temp (C)"</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_ph =</span> <span class="st">'pH'</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">avg_pco2_water_ppm =</span> <span class="st">"pC02 (ppm)"</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="dcnulusafx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#dcnulusafx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#dcnulusafx thead, #dcnulusafx tbody, #dcnulusafx tfoot, #dcnulusafx tr, #dcnulusafx td, #dcnulusafx th {
+  border-style: none;
+}
+
+#dcnulusafx p {
+  margin: 0;
+  padding: 0;
+}
+
+#dcnulusafx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#dcnulusafx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#dcnulusafx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#dcnulusafx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#dcnulusafx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#dcnulusafx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#dcnulusafx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#dcnulusafx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#dcnulusafx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#dcnulusafx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#dcnulusafx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#dcnulusafx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#dcnulusafx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#dcnulusafx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#dcnulusafx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dcnulusafx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#dcnulusafx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#dcnulusafx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#dcnulusafx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dcnulusafx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#dcnulusafx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dcnulusafx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#dcnulusafx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dcnulusafx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#dcnulusafx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#dcnulusafx .gt_left {
+  text-align: left;
+}
+
+#dcnulusafx .gt_center {
+  text-align: center;
+}
+
+#dcnulusafx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#dcnulusafx .gt_font_normal {
+  font-weight: normal;
+}
+
+#dcnulusafx .gt_font_bold {
+  font-weight: bold;
+}
+
+#dcnulusafx .gt_font_italic {
+  font-style: italic;
+}
+
+#dcnulusafx .gt_super {
+  font-size: 65%;
+}
+
+#dcnulusafx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#dcnulusafx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#dcnulusafx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#dcnulusafx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#dcnulusafx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#dcnulusafx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#dcnulusafx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#dcnulusafx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#dcnulusafx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th colspan="2" id="**Air**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Air</strong>
+</div></th>
+<th colspan="3" id="**Water**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Water</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pH</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.92844</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0941</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.94800</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.4264</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.8672</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.35022</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0905</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.47222</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.6096</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">218.0030</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36000</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.1236</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34178</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.7964</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.2890</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.55600</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6909</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.46750</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.2524</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">335.5639</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10280</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6973</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.25739</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.4504</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.7339</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.87200</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.7452</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.07800</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.5016</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">172.2162</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="limiting-to-2-decimals" class="level2">
+<h2 class="anchored" data-anchor-id="limiting-to-2-decimals">Limiting to 2 decimals</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="sc">|&gt;</span>  <span class="fu">fmt_number</span>(</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="fu">everything</span>(),</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">decimals =</span> <span class="dv">2</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">use_seps =</span> <span class="cn">FALSE</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="wbdnoebokx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wbdnoebokx table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#wbdnoebokx thead, #wbdnoebokx tbody, #wbdnoebokx tfoot, #wbdnoebokx tr, #wbdnoebokx td, #wbdnoebokx th {
+  border-style: none;
+}
+
+#wbdnoebokx p {
+  margin: 0;
+  padding: 0;
+}
+
+#wbdnoebokx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#wbdnoebokx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#wbdnoebokx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#wbdnoebokx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#wbdnoebokx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#wbdnoebokx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#wbdnoebokx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#wbdnoebokx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#wbdnoebokx .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#wbdnoebokx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#wbdnoebokx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#wbdnoebokx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#wbdnoebokx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#wbdnoebokx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#wbdnoebokx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbdnoebokx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#wbdnoebokx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#wbdnoebokx .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#wbdnoebokx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbdnoebokx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#wbdnoebokx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbdnoebokx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#wbdnoebokx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbdnoebokx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#wbdnoebokx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#wbdnoebokx .gt_left {
+  text-align: left;
+}
+
+#wbdnoebokx .gt_center {
+  text-align: center;
+}
+
+#wbdnoebokx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#wbdnoebokx .gt_font_normal {
+  font-weight: normal;
+}
+
+#wbdnoebokx .gt_font_bold {
+  font-weight: bold;
+}
+
+#wbdnoebokx .gt_font_italic {
+  font-style: italic;
+}
+
+#wbdnoebokx .gt_super {
+  font-size: 65%;
+}
+
+#wbdnoebokx .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#wbdnoebokx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#wbdnoebokx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#wbdnoebokx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#wbdnoebokx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#wbdnoebokx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#wbdnoebokx .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#wbdnoebokx .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#wbdnoebokx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th colspan="2" id="**Air**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Air</strong>
+</div></th>
+<th colspan="3" id="**Water**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Water</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pH</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.93</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.09</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.95</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.43</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.87</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.35</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.09</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.47</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.61</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">218.00</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.12</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.80</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.29</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.56</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.69</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.47</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.25</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">335.56</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.70</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.26</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.45</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.73</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">20.87</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.75</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">19.08</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.50</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">172.22</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="styling" class="level2">
+<h2 class="anchored" data-anchor-id="styling">Styling</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="sc">|&gt;</span> <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>, <span class="at">color =</span> <span class="st">'gray'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="hbnopsjmgf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hbnopsjmgf table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#hbnopsjmgf thead, #hbnopsjmgf tbody, #hbnopsjmgf tfoot, #hbnopsjmgf tr, #hbnopsjmgf td, #hbnopsjmgf th {
+  border-style: none;
+}
+
+#hbnopsjmgf p {
+  margin: 0;
+  padding: 0;
+}
+
+#hbnopsjmgf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#hbnopsjmgf .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#hbnopsjmgf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#hbnopsjmgf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#hbnopsjmgf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hbnopsjmgf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#hbnopsjmgf .gt_col_heading {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#hbnopsjmgf .gt_column_spanner_outer {
+  color: #FFFFFF;
+  background-color: #5F5F5F;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#hbnopsjmgf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#hbnopsjmgf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#hbnopsjmgf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#hbnopsjmgf .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#hbnopsjmgf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#hbnopsjmgf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+  vertical-align: middle;
+}
+
+#hbnopsjmgf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#hbnopsjmgf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#hbnopsjmgf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: none;
+  border-top-width: 1px;
+  border-top-color: #D5D5D5;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D5D5D5;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D5D5D5;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#hbnopsjmgf .gt_stub {
+  color: #333333;
+  background-color: #D5D5D5;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D5D5D5;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbnopsjmgf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#hbnopsjmgf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#hbnopsjmgf .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#hbnopsjmgf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbnopsjmgf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#hbnopsjmgf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #D5D5D5;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbnopsjmgf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_striped {
+  background-color: #F4F4F4;
+}
+
+#hbnopsjmgf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #5F5F5F;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #5F5F5F;
+}
+
+#hbnopsjmgf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hbnopsjmgf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbnopsjmgf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#hbnopsjmgf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#hbnopsjmgf .gt_left {
+  text-align: left;
+}
+
+#hbnopsjmgf .gt_center {
+  text-align: center;
+}
+
+#hbnopsjmgf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#hbnopsjmgf .gt_font_normal {
+  font-weight: normal;
+}
+
+#hbnopsjmgf .gt_font_bold {
+  font-weight: bold;
+}
+
+#hbnopsjmgf .gt_font_italic {
+  font-style: italic;
+}
+
+#hbnopsjmgf .gt_super {
+  font-size: 65%;
+}
+
+#hbnopsjmgf .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#hbnopsjmgf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#hbnopsjmgf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#hbnopsjmgf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#hbnopsjmgf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#hbnopsjmgf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#hbnopsjmgf .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#hbnopsjmgf .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#hbnopsjmgf div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="gt_heading header">
+<td colspan="6" class="gt_heading gt_title gt_font_normal">Average measurements per lake and year</td>
+</tr>
+<tr class="gt_heading even">
+<td colspan="6" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">major reservoirs in San Diego County</td>
+</tr>
+<tr class="gt_col_headings gt_spanner_row header">
+<th rowspan="2" id="lake" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">lake</th>
+<th colspan="2" id="**Air**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Air</strong>
+</div></th>
+<th colspan="3" id="**Water**" class="gt_center gt_columns_top_border gt_column_spanner_outer" data-quarto-table-cell-role="th" scope="colgroup"><div class="gt_column_spanner">
+<strong>Water</strong>
+</div></th>
+</tr>
+<tr class="gt_col_headings even">
+<th id="avg_air_temp" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_pco2_atmosphere_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+<th id="avg_h2o_temp_c" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Temp (C)</th>
+<th id="avg_ph" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pH</th>
+<th id="avg_pco2_water_ppm" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">pC02 (ppm)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2013" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2013</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left" headers="2013  lake">Miramar</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">24.92844</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.0941</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.94800</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.4264</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">353.8672</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left gt_striped" headers="2013  lake">Murray</td>
+<td class="gt_row gt_right gt_striped" headers="2013  avg_air_temp">24.35022</td>
+<td class="gt_row gt_right gt_striped" headers="2013  avg_pco2_atmosphere_ppm">395.0905</td>
+<td class="gt_row gt_right gt_striped" headers="2013  avg_h2o_temp_c">23.47222</td>
+<td class="gt_row gt_right gt_striped" headers="2013  avg_ph">8.6096</td>
+<td class="gt_row gt_right gt_striped" headers="2013  avg_pco2_water_ppm">218.0030</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="2013  lake">Poway</td>
+<td class="gt_row gt_right" headers="2013  avg_air_temp">27.36000</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_atmosphere_ppm">395.1236</td>
+<td class="gt_row gt_right" headers="2013  avg_h2o_temp_c">23.34178</td>
+<td class="gt_row gt_right" headers="2013  avg_ph">8.7964</td>
+<td class="gt_row gt_right" headers="2013  avg_pco2_water_ppm">126.2890</td>
+</tr>
+<tr class="gt_group_heading_row odd">
+<th colspan="6" id="2014" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">2014</th>
+</tr>
+<tr class="gt_row_group_first even">
+<td class="gt_row gt_left gt_striped" headers="2014  lake">Miramar</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_air_temp">20.55600</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_pco2_atmosphere_ppm">399.6909</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_h2o_temp_c">19.46750</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_ph">8.2524</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_pco2_water_ppm">335.5639</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="2014  lake">Murray</td>
+<td class="gt_row gt_right" headers="2014  avg_air_temp">21.10280</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_atmosphere_ppm">399.6973</td>
+<td class="gt_row gt_right" headers="2014  avg_h2o_temp_c">20.25739</td>
+<td class="gt_row gt_right" headers="2014  avg_ph">8.4504</td>
+<td class="gt_row gt_right" headers="2014  avg_pco2_water_ppm">245.7339</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="2014  lake">Poway</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_air_temp">20.87200</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_pco2_atmosphere_ppm">399.7452</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_h2o_temp_c">19.07800</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_ph">8.5016</td>
+<td class="gt_row gt_right gt_striped" headers="2014  avg_pco2_water_ppm">172.2162</td>
+</tr>
+</tbody><tfoot>
+<tr class="gt_sourcenotes odd">
+<td colspan="6" class="gt_sourcenote">Source: <em>Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464</em></td>
+</tr>
+</tfoot>
+
+</table>
+
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
