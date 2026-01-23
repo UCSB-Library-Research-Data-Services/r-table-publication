@@ -4,7 +4,7 @@ title: "Beautiful Tables for Models"
 
 ## Introduction to `gtsummary`
 
-Next, we'll use the `gtsummary` package, an extension of `gt` that can incorporate model outputs into tables.
+Next, we'll use the `gtsummary` package, an extension of `gt` that can incorporate statistical model outputs into tables.
 
 As with all R packages, we first need to install the package, then call it for use during this session.
 
@@ -147,31 +147,32 @@ data |>
 ```
 
 
-### Table with regression results [STILL DRAFTING]
+### Table with regression results
 
-Predict chlorophyll from water temperature, nitrogen, phosphorus, and dissolved organic carbon.
+When running a regression, we would want to have all model results - coefficients, confidence interval, and p-value - formatted into a table.
+
+Predict chlorophyll from water temperature, nitrogen, phosphorus, and dissolved organic carbon:
 
 ```{r}
+#use lm() function to create model object
 mod1 <- lm(chlorophyll_a_ugL ~ h2o_temp_c + total_nitrogen_mgL + total_phosphorus._mgL + dissolved_organic_carbon_mgL, data = data)
-```
 
-```{r}
+#use summary() to view result
 summary(mod1)
 ```
+The equivalent function in `gtsummary` is `tbl_regression()`, which produces a formatted table of regression results.
 
 ```{r}
 tbl_regression(mod1)
 ```
 
-Use a [mix of `gt` and `gtsummary` functions for formatting](https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html#customize-output) the output table.
-
-Combine with `gt` formatting by making the table (currently a tbl_regression object) into a gt_tbl object, to do other gt formatting
+This table is customizable, using a [mix of `gt` and `gtsummary` functions for formatting](https://www.danieldsjoberg.com/gtsummary/articles/tbl_regression.html#customize-output) the output table.
 
 ```{r}
 tbl_regression(mod1,
                #update variable names
                label = list(h2o_temp_c = "Water Temperature (C)", total_nitrogen_mgL = "Total Nitrogen (mgL)", total_phosphorus._mgL = "Total Phosphorus (mgL)", dissolved_organic_carbon_mgL = "Dissolved Organic Carbon (mgL)")) |>
-  #make gt object
+  #make gt object, in order to use gt functions below
    as_gt() |>
   #add source note
    gt::tab_source_note(source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
@@ -179,13 +180,8 @@ tbl_regression(mod1,
 ```
 
 
-
 ## Additional resources
 
 * [Primary website for gtsummary](https://www.danieldsjoberg.com/gtsummary/) including how to [cite use of the package](https://www.danieldsjoberg.com/gtsummary/authors.html#citation).
 * gtsummary [reference manual](https://cran.r-project.org/web/packages/gtsummary/refman/gtsummary.html) with complete details on functions and arguments.
 * Examples of [gtsummary in practice from R Graph Gallery](https://r-graph-gallery.com/package/gtsummary.html). 
-
-## Data reference
-
-Adamczyk, Emily M.; Shurin, Jonathan B. (2016). Data from: Seasonal changes in plankton food web structure and carbon dioxide flux from Southern California reservoirs [Dataset]. Dryad. [https://doi.org/10.5061/dryad.6tn4h](https://doi.org/10.5061/dryad.6tn4h)
