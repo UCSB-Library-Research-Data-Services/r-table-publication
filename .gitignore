@@ -8,3 +8,6 @@
 _site/
 /.quarto/
 **/*.quarto_ipynb
+
+# Live coding files
+gtsummary_live.R
