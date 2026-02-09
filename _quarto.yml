@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: _site
+  
+execute:
+  freeze: auto  # re-render only when source changes
 
 website:
   title: "Publication Ready Tables in R"
