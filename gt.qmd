@@ -5,8 +5,11 @@ title: "Beautiful Tables"
 
 We are going to reproduce some of the tables of this paper _Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs_ <https://doi.org/10.1371/journal.pone.0140464>
 
+## Load the packages we need
 
 ```{r label='install_load'}
+#| message: FALSE
+ 
 # install.packages("gt")
 library(gt)
 library(tidyverse)
@@ -29,13 +32,17 @@ data |> glimpse()
 Let's have a look at the first rows of our dataset
 
 ```{r}
-data |> head() |> gt()
+data |> 
+  head() |>
+  gt()
 ```
 
 Now let's create a summary table of the average air temperature for each basin
 
 ```{r}
-data_air <- temp_basin <- data |>
+#| message: FALSE
+
+data_air <- data |>
   select(year, lake, air_temp_c) |>
   group_by(year, lake) |>
     summarise(average_air_temp = mean(air_temp_c))
@@ -48,17 +55,13 @@ data_air
 ```{r}
 gt_air <-
   data_air |>
-  gt() |>
-  tab_header(
-    title = "Average air temperature (C) per lake and year",
-    subtitle = "major reservoirs in San Diego County"
-  )
+  gt() 
 
 # Show the gt Table
 gt_air
 ```
 
-## Add reference
+## Add title
 
 ```{r}
 gt_air <-
@@ -67,10 +70,7 @@ gt_air <-
   tab_header(
     title = "Average air temperature (C) per lake and year",
     subtitle = "major reservoirs in San Diego County"
-  ) |>
- tab_source_note(
-    source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
-  )
+  ) 
 
 # Show the gt Table
 gt_air
@@ -81,6 +81,8 @@ gt_air
 
 
 ```{r}
+#| message: FALSE
+
 data_measurements <- temp_basin <- data |>
   select(year, lake, air_temp_c, pco2_atmosphere_ppm, h2o_temp_c, ph, pco2_water_ppm) |>
   group_by(year, lake) |>
@@ -91,23 +93,23 @@ data_measurements <- temp_basin <- data |>
               avg_pco2_water_ppm = mean(pco2_water_ppm, na.rm=TRUE)
     )
 
+data_measurements |>  gt()
 ```
 
-
-# Add title and Footnote
-
+## Add better column names
 
 ```{r}
 gt_measurements <-
   data_measurements |>
   gt() |>
-  tab_header(
-    title = "Average measurements per lake and year",
-    subtitle = "major reservoirs in San Diego County"
-  ) |>
- tab_source_note(
-    source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
+  cols_label(
+    avg_air_temp = "Air Temp (C)",
+    avg_pco2_atmosphere_ppm = "Air pC02 (ppm)",
+    avg_h2o_temp_c = "Water Temp (C)",
+    avg_ph = 'Water pH',
+    avg_pco2_water_ppm = "Water pC02 (ppm)"
   )
+
 
 # Show the gt Table
 gt_measurements
@@ -119,13 +121,6 @@ gt_measurements
 gt_measurements <-
   data_measurements |>
   gt() |>
-  tab_header(
-    title = "Average measurements per lake and year",
-    subtitle = "major reservoirs in San Diego County"
-  ) |>
- tab_source_note(
-    source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
-  ) |>
   tab_spanner(
     label = "Air",
     columns = c(avg_air_temp, avg_pco2_atmosphere_ppm)
@@ -133,44 +128,8 @@ gt_measurements <-
   tab_spanner(
     label = "Water",
     columns = c(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)
-  )
-
-
-# Show the gt Table
-gt_measurements
-```
-
-## More styling on sub headers
-
-```{r}
-gt_measurements <-
-  data_measurements |>
-  gt() |>
-  tab_header(
-    title = "Average measurements per lake and year",
-    subtitle = "major reservoirs in San Diego County"
   ) |>
- tab_source_note(
-    source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. https://doi.org/10.1371/journal.pone.0140464_")
-  ) |>
-  tab_spanner(
-    label = md("**Air**"),
-    columns = c(avg_air_temp, avg_pco2_atmosphere_ppm)
-  ) |>
-  tab_spanner(
-    label = md("**Water**"),
-    columns = c(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)
-  )
-
-
-# Show the gt Table
-gt_measurements
-```
-
-## Simplify the column names
-
-```{r}
-gt_measurements  <- gt_measurements |> cols_label(
+  cols_label(
     avg_air_temp = "Temp (C)",
     avg_pco2_atmosphere_ppm = "pC02 (ppm)",
     avg_h2o_temp_c = "Temp (C)",
@@ -178,17 +137,55 @@ gt_measurements  <- gt_measurements |> cols_label(
     avg_pco2_water_ppm = "pC02 (ppm)"
   )
 
+# Show the gt Table
 gt_measurements
 ```
 
-## Limiting to 2 decimals
+
+
+## Limiting values to 2 decimals
 
 ```{r}
-gt_measurements |>  fmt_number(
+gt_measurements <- gt_measurements |>
+    fmt_number(
     columns = everything(),
     decimals = 2,
     use_seps = FALSE
   )
+
+
+# Show the gt Table
+gt_measurements
+```
+
+## Put it all together
+
+### Add title and Footnote
+
+
+```{r}
+gt_measurements <- gt_measurements |>
+  tab_header(
+    title = "Average measurements per lake and year",
+    subtitle = "major reservoirs in San Diego County"
+  ) |>
+ tab_source_note(
+    source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. <https://doi.org/10.1371/journal.pone.0140464>_")
+  )
+
+# Show the gt Table
+gt_measurements
+```
+
+
+
+## More styling on sub headers
+
+
+
+
+```{r}
+gt_measurements 
 ```
 
 ## Styling
