@@ -84,6 +84,13 @@
     "text": "Now let’s make this a nice table\n\ngt_air &lt;-\n  data_air |&gt;\n  gt() \n\n# Show the gt Table\ngt_air\n\n\n\n\n\n\n\nlake\naverage_air_temp\n\n\n\n\n2013\n\n\nMiramar\n24.92844\n\n\nMurray\n24.35022\n\n\nPoway\n27.36000\n\n\n2014\n\n\nMiramar\n20.55600\n\n\nMurray\n21.10280\n\n\nPoway\n20.87200"
   },
   {
+    "objectID": "gt.html#add-a-title",
+    "href": "gt.html#add-a-title",
+    "title": "Beautiful Tables with gt",
+    "section": "Add a Title",
+    "text": "Add a Title\n\ngt_air |&gt; \n  tab_header(\n    title = \"Average measurements per lake and year\",\n    subtitle = \"major reservoirs in San Diego County\"\n  ) \n\n\n\n\n\n\n\nAverage measurements per lake and year\n\n\nmajor reservoirs in San Diego County\n\n\nlake\naverage_air_temp\n\n\n\n\n2013\n\n\nMiramar\n24.92844\n\n\nMurray\n24.35022\n\n\nPoway\n27.36000\n\n\n2014\n\n\nMiramar\n20.55600\n\n\nMurray\n21.10280\n\n\nPoway\n20.87200"
+  },
+  {
     "objectID": "gt.html#working-with-a-more-complex-table",
     "href": "gt.html#working-with-a-more-complex-table",
     "title": "Beautiful Tables with gt",
