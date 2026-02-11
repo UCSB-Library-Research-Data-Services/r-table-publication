@@ -196,3 +196,7 @@ gt_measurements
 gt_measurements |> opt_stylize(style = 6, color = 'gray')
 ```
 
+
+There are 36 combinations of style and color to choose from: <https://gt.rstudio.com/reference/opt_stylize.html?q=opt_stylize#examples>
+
+And of course you can do conditional cell formatting: <https://gt.rstudio.com/reference/tab_style.html>
