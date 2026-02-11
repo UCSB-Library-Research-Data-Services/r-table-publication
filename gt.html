@@ -159,8 +159,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#load-the-libraries" id="toc-load-the-libraries" class="nav-link" data-scroll-target="#load-the-libraries">Load the libraries</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#have-a-look-at-the-data" id="toc-have-a-look-at-the-data" class="nav-link" data-scroll-target="#have-a-look-at-the-data">Have a look at the data</a></li>
+  <li><a href="#a-simple-table" id="toc-a-simple-table" class="nav-link" data-scroll-target="#a-simple-table">A simple table</a></li>
   <li><a href="#now-lets-make-this-a-nice-table" id="toc-now-lets-make-this-a-nice-table" class="nav-link" data-scroll-target="#now-lets-make-this-a-nice-table">Now let’s make this a nice table</a></li>
-  <li><a href="#with-more-measurements" id="toc-with-more-measurements" class="nav-link" data-scroll-target="#with-more-measurements">With more measurements</a></li>
+  <li><a href="#working-with-a-more-complex-table" id="toc-working-with-a-more-complex-table" class="nav-link" data-scroll-target="#working-with-a-more-complex-table">Working with a more complex table</a></li>
   <li><a href="#add-better-column-names" id="toc-add-better-column-names" class="nav-link" data-scroll-target="#add-better-column-names">Add better column names</a></li>
   <li><a href="#adding-headers-for-multiple-columns" id="toc-adding-headers-for-multiple-columns" class="nav-link" data-scroll-target="#adding-headers-for-multiple-columns">Adding headers for multiple columns</a></li>
   <li><a href="#limiting-values-to-2-decimals" id="toc-limiting-values-to-2-decimals" class="nav-link" data-scroll-target="#limiting-values-to-2-decimals">Limiting values to 2 decimals</a></li>
@@ -270,23 +271,23 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>() <span class="sc">|&gt;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="tvxilahnxg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tvxilahnxg table {
+<div id="tfeqyleznt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#tfeqyleznt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tvxilahnxg thead, #tvxilahnxg tbody, #tvxilahnxg tfoot, #tvxilahnxg tr, #tvxilahnxg td, #tvxilahnxg th {
+#tfeqyleznt thead, #tfeqyleznt tbody, #tfeqyleznt tfoot, #tfeqyleznt tr, #tfeqyleznt td, #tfeqyleznt th {
   border-style: none;
 }
 
-#tvxilahnxg p {
+#tfeqyleznt p {
   margin: 0;
   padding: 0;
 }
 
-#tvxilahnxg .gt_table {
+#tfeqyleznt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -312,12 +313,12 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-left-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_caption {
+#tfeqyleznt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tvxilahnxg .gt_title {
+#tfeqyleznt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -329,7 +330,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-width: 0;
 }
 
-#tvxilahnxg .gt_subtitle {
+#tfeqyleznt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -341,7 +342,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-width: 0;
 }
 
-#tvxilahnxg .gt_heading {
+#tfeqyleznt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -353,13 +354,13 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_bottom_border {
+#tfeqyleznt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_col_headings {
+#tfeqyleznt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -374,7 +375,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_col_heading {
+#tfeqyleznt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -394,7 +395,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#tvxilahnxg .gt_column_spanner_outer {
+#tfeqyleznt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -406,15 +407,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 4px;
 }
 
-#tvxilahnxg .gt_column_spanner_outer:first-child {
+#tfeqyleznt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tvxilahnxg .gt_column_spanner_outer:last-child {
+#tfeqyleznt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tvxilahnxg .gt_column_spanner {
+#tfeqyleznt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -426,11 +427,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   width: 100%;
 }
 
-#tvxilahnxg .gt_spanner_row {
+#tfeqyleznt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tvxilahnxg .gt_group_heading {
+#tfeqyleznt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -456,7 +457,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   text-align: left;
 }
 
-#tvxilahnxg .gt_empty_group_heading {
+#tfeqyleznt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -471,15 +472,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: middle;
 }
 
-#tvxilahnxg .gt_from_md > :first-child {
+#tfeqyleznt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tvxilahnxg .gt_from_md > :last-child {
+#tfeqyleznt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tvxilahnxg .gt_row {
+#tfeqyleznt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -498,7 +499,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#tvxilahnxg .gt_stub {
+#tfeqyleznt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -511,7 +512,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#tvxilahnxg .gt_stub_row_group {
+#tfeqyleznt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -525,15 +526,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: top;
 }
 
-#tvxilahnxg .gt_row_group_first td {
+#tfeqyleznt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tvxilahnxg .gt_row_group_first th {
+#tfeqyleznt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tvxilahnxg .gt_summary_row {
+#tfeqyleznt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -543,16 +544,16 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#tvxilahnxg .gt_first_summary_row {
+#tfeqyleznt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_first_summary_row.thick {
+#tfeqyleznt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tvxilahnxg .gt_last_summary_row {
+#tfeqyleznt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -562,7 +563,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_grand_summary_row {
+#tfeqyleznt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -572,7 +573,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#tvxilahnxg .gt_first_grand_summary_row {
+#tfeqyleznt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -582,7 +583,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_last_grand_summary_row_top {
+#tfeqyleznt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -592,11 +593,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_striped {
+#tfeqyleznt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tvxilahnxg .gt_table_body {
+#tfeqyleznt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -605,7 +606,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_footnotes {
+#tfeqyleznt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -619,7 +620,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_footnote {
+#tfeqyleznt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -628,7 +629,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#tvxilahnxg .gt_sourcenotes {
+#tfeqyleznt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -642,7 +643,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#tvxilahnxg .gt_sourcenote {
+#tfeqyleznt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -650,72 +651,72 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#tvxilahnxg .gt_left {
+#tfeqyleznt .gt_left {
   text-align: left;
 }
 
-#tvxilahnxg .gt_center {
+#tfeqyleznt .gt_center {
   text-align: center;
 }
 
-#tvxilahnxg .gt_right {
+#tfeqyleznt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tvxilahnxg .gt_font_normal {
+#tfeqyleznt .gt_font_normal {
   font-weight: normal;
 }
 
-#tvxilahnxg .gt_font_bold {
+#tfeqyleznt .gt_font_bold {
   font-weight: bold;
 }
 
-#tvxilahnxg .gt_font_italic {
+#tfeqyleznt .gt_font_italic {
   font-style: italic;
 }
 
-#tvxilahnxg .gt_super {
+#tfeqyleznt .gt_super {
   font-size: 65%;
 }
 
-#tvxilahnxg .gt_footnote_marks {
+#tfeqyleznt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tvxilahnxg .gt_asterisk {
+#tfeqyleznt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tvxilahnxg .gt_indent_1 {
+#tfeqyleznt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tvxilahnxg .gt_indent_2 {
+#tfeqyleznt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tvxilahnxg .gt_indent_3 {
+#tfeqyleznt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tvxilahnxg .gt_indent_4 {
+#tfeqyleznt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tvxilahnxg .gt_indent_5 {
+#tfeqyleznt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tvxilahnxg .katex-display {
+#tfeqyleznt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tvxilahnxg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#tfeqyleznt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -912,6 +913,9 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 </div>
 </div>
 </div>
+</section>
+<section id="a-simple-table" class="level2">
+<h2 class="anchored" data-anchor-id="a-simple-table">A simple table</h2>
 <p>Now let’s create a summary table of the average air temperature for each basin</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>data_air <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
@@ -944,23 +948,23 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>gt_air</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="jihwgyddnx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jihwgyddnx table {
+<div id="bwlhwrhian" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bwlhwrhian table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jihwgyddnx thead, #jihwgyddnx tbody, #jihwgyddnx tfoot, #jihwgyddnx tr, #jihwgyddnx td, #jihwgyddnx th {
+#bwlhwrhian thead, #bwlhwrhian tbody, #bwlhwrhian tfoot, #bwlhwrhian tr, #bwlhwrhian td, #bwlhwrhian th {
   border-style: none;
 }
 
-#jihwgyddnx p {
+#bwlhwrhian p {
   margin: 0;
   padding: 0;
 }
 
-#jihwgyddnx .gt_table {
+#bwlhwrhian .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -986,12 +990,12 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-left-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_caption {
+#bwlhwrhian .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jihwgyddnx .gt_title {
+#bwlhwrhian .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1003,7 +1007,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-width: 0;
 }
 
-#jihwgyddnx .gt_subtitle {
+#bwlhwrhian .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1015,7 +1019,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-width: 0;
 }
 
-#jihwgyddnx .gt_heading {
+#bwlhwrhian .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1027,13 +1031,13 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_bottom_border {
+#bwlhwrhian .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_col_headings {
+#bwlhwrhian .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1048,7 +1052,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_col_heading {
+#bwlhwrhian .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1068,7 +1072,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#jihwgyddnx .gt_column_spanner_outer {
+#bwlhwrhian .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1080,15 +1084,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 4px;
 }
 
-#jihwgyddnx .gt_column_spanner_outer:first-child {
+#bwlhwrhian .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jihwgyddnx .gt_column_spanner_outer:last-child {
+#bwlhwrhian .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jihwgyddnx .gt_column_spanner {
+#bwlhwrhian .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1100,11 +1104,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   width: 100%;
 }
 
-#jihwgyddnx .gt_spanner_row {
+#bwlhwrhian .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jihwgyddnx .gt_group_heading {
+#bwlhwrhian .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1130,7 +1134,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   text-align: left;
 }
 
-#jihwgyddnx .gt_empty_group_heading {
+#bwlhwrhian .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1145,15 +1149,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: middle;
 }
 
-#jihwgyddnx .gt_from_md > :first-child {
+#bwlhwrhian .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jihwgyddnx .gt_from_md > :last-child {
+#bwlhwrhian .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jihwgyddnx .gt_row {
+#bwlhwrhian .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1172,7 +1176,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#jihwgyddnx .gt_stub {
+#bwlhwrhian .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1185,7 +1189,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jihwgyddnx .gt_stub_row_group {
+#bwlhwrhian .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1199,15 +1203,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: top;
 }
 
-#jihwgyddnx .gt_row_group_first td {
+#bwlhwrhian .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jihwgyddnx .gt_row_group_first th {
+#bwlhwrhian .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jihwgyddnx .gt_summary_row {
+#bwlhwrhian .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1217,16 +1221,16 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jihwgyddnx .gt_first_summary_row {
+#bwlhwrhian .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_first_summary_row.thick {
+#bwlhwrhian .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jihwgyddnx .gt_last_summary_row {
+#bwlhwrhian .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1236,7 +1240,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_grand_summary_row {
+#bwlhwrhian .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1246,7 +1250,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jihwgyddnx .gt_first_grand_summary_row {
+#bwlhwrhian .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1256,7 +1260,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_last_grand_summary_row_top {
+#bwlhwrhian .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1266,11 +1270,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_striped {
+#bwlhwrhian .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jihwgyddnx .gt_table_body {
+#bwlhwrhian .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1279,7 +1283,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_footnotes {
+#bwlhwrhian .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1293,7 +1297,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_footnote {
+#bwlhwrhian .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1302,7 +1306,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jihwgyddnx .gt_sourcenotes {
+#bwlhwrhian .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1316,7 +1320,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jihwgyddnx .gt_sourcenote {
+#bwlhwrhian .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1324,72 +1328,72 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jihwgyddnx .gt_left {
+#bwlhwrhian .gt_left {
   text-align: left;
 }
 
-#jihwgyddnx .gt_center {
+#bwlhwrhian .gt_center {
   text-align: center;
 }
 
-#jihwgyddnx .gt_right {
+#bwlhwrhian .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jihwgyddnx .gt_font_normal {
+#bwlhwrhian .gt_font_normal {
   font-weight: normal;
 }
 
-#jihwgyddnx .gt_font_bold {
+#bwlhwrhian .gt_font_bold {
   font-weight: bold;
 }
 
-#jihwgyddnx .gt_font_italic {
+#bwlhwrhian .gt_font_italic {
   font-style: italic;
 }
 
-#jihwgyddnx .gt_super {
+#bwlhwrhian .gt_super {
   font-size: 65%;
 }
 
-#jihwgyddnx .gt_footnote_marks {
+#bwlhwrhian .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jihwgyddnx .gt_asterisk {
+#bwlhwrhian .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jihwgyddnx .gt_indent_1 {
+#bwlhwrhian .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jihwgyddnx .gt_indent_2 {
+#bwlhwrhian .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jihwgyddnx .gt_indent_3 {
+#bwlhwrhian .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jihwgyddnx .gt_indent_4 {
+#bwlhwrhian .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jihwgyddnx .gt_indent_5 {
+#bwlhwrhian .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jihwgyddnx .katex-display {
+#bwlhwrhian .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jihwgyddnx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#bwlhwrhian div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1439,8 +1443,8 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 </div>
 </div>
 </section>
-<section id="with-more-measurements" class="level2">
-<h2 class="anchored" data-anchor-id="with-more-measurements">With more measurements</h2>
+<section id="working-with-a-more-complex-table" class="level2">
+<h2 class="anchored" data-anchor-id="working-with-a-more-complex-table">Working with a more complex table</h2>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>data_measurements <span class="ot">&lt;-</span> temp_basin <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, lake, air_temp_c, pco2_atmosphere_ppm, h2o_temp_c, ph, pco2_water_ppm) <span class="sc">|&gt;</span></span>
@@ -1454,23 +1458,23 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>data_measurements <span class="sc">|&gt;</span>  <span class="fu">gt</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="jdvhdwylpv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jdvhdwylpv table {
+<div id="iijdrdfxep" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iijdrdfxep table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jdvhdwylpv thead, #jdvhdwylpv tbody, #jdvhdwylpv tfoot, #jdvhdwylpv tr, #jdvhdwylpv td, #jdvhdwylpv th {
+#iijdrdfxep thead, #iijdrdfxep tbody, #iijdrdfxep tfoot, #iijdrdfxep tr, #iijdrdfxep td, #iijdrdfxep th {
   border-style: none;
 }
 
-#jdvhdwylpv p {
+#iijdrdfxep p {
   margin: 0;
   padding: 0;
 }
 
-#jdvhdwylpv .gt_table {
+#iijdrdfxep .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1496,12 +1500,12 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-left-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_caption {
+#iijdrdfxep .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jdvhdwylpv .gt_title {
+#iijdrdfxep .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1513,7 +1517,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-width: 0;
 }
 
-#jdvhdwylpv .gt_subtitle {
+#iijdrdfxep .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1525,7 +1529,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-width: 0;
 }
 
-#jdvhdwylpv .gt_heading {
+#iijdrdfxep .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1537,13 +1541,13 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_bottom_border {
+#iijdrdfxep .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_col_headings {
+#iijdrdfxep .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1558,7 +1562,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_col_heading {
+#iijdrdfxep .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1578,7 +1582,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#jdvhdwylpv .gt_column_spanner_outer {
+#iijdrdfxep .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1590,15 +1594,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 4px;
 }
 
-#jdvhdwylpv .gt_column_spanner_outer:first-child {
+#iijdrdfxep .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jdvhdwylpv .gt_column_spanner_outer:last-child {
+#iijdrdfxep .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jdvhdwylpv .gt_column_spanner {
+#iijdrdfxep .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1610,11 +1614,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   width: 100%;
 }
 
-#jdvhdwylpv .gt_spanner_row {
+#iijdrdfxep .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jdvhdwylpv .gt_group_heading {
+#iijdrdfxep .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1640,7 +1644,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   text-align: left;
 }
 
-#jdvhdwylpv .gt_empty_group_heading {
+#iijdrdfxep .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1655,15 +1659,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: middle;
 }
 
-#jdvhdwylpv .gt_from_md > :first-child {
+#iijdrdfxep .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jdvhdwylpv .gt_from_md > :last-child {
+#iijdrdfxep .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jdvhdwylpv .gt_row {
+#iijdrdfxep .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1682,7 +1686,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#jdvhdwylpv .gt_stub {
+#iijdrdfxep .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1695,7 +1699,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jdvhdwylpv .gt_stub_row_group {
+#iijdrdfxep .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1709,15 +1713,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: top;
 }
 
-#jdvhdwylpv .gt_row_group_first td {
+#iijdrdfxep .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jdvhdwylpv .gt_row_group_first th {
+#iijdrdfxep .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jdvhdwylpv .gt_summary_row {
+#iijdrdfxep .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1727,16 +1731,16 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jdvhdwylpv .gt_first_summary_row {
+#iijdrdfxep .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_first_summary_row.thick {
+#iijdrdfxep .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jdvhdwylpv .gt_last_summary_row {
+#iijdrdfxep .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1746,7 +1750,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_grand_summary_row {
+#iijdrdfxep .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1756,7 +1760,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jdvhdwylpv .gt_first_grand_summary_row {
+#iijdrdfxep .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1766,7 +1770,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_last_grand_summary_row_top {
+#iijdrdfxep .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1776,11 +1780,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_striped {
+#iijdrdfxep .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jdvhdwylpv .gt_table_body {
+#iijdrdfxep .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1789,7 +1793,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_footnotes {
+#iijdrdfxep .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1803,7 +1807,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_footnote {
+#iijdrdfxep .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1812,7 +1816,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jdvhdwylpv .gt_sourcenotes {
+#iijdrdfxep .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1826,7 +1830,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#jdvhdwylpv .gt_sourcenote {
+#iijdrdfxep .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1834,72 +1838,72 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#jdvhdwylpv .gt_left {
+#iijdrdfxep .gt_left {
   text-align: left;
 }
 
-#jdvhdwylpv .gt_center {
+#iijdrdfxep .gt_center {
   text-align: center;
 }
 
-#jdvhdwylpv .gt_right {
+#iijdrdfxep .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jdvhdwylpv .gt_font_normal {
+#iijdrdfxep .gt_font_normal {
   font-weight: normal;
 }
 
-#jdvhdwylpv .gt_font_bold {
+#iijdrdfxep .gt_font_bold {
   font-weight: bold;
 }
 
-#jdvhdwylpv .gt_font_italic {
+#iijdrdfxep .gt_font_italic {
   font-style: italic;
 }
 
-#jdvhdwylpv .gt_super {
+#iijdrdfxep .gt_super {
   font-size: 65%;
 }
 
-#jdvhdwylpv .gt_footnote_marks {
+#iijdrdfxep .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jdvhdwylpv .gt_asterisk {
+#iijdrdfxep .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jdvhdwylpv .gt_indent_1 {
+#iijdrdfxep .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jdvhdwylpv .gt_indent_2 {
+#iijdrdfxep .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jdvhdwylpv .gt_indent_3 {
+#iijdrdfxep .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jdvhdwylpv .gt_indent_4 {
+#iijdrdfxep .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jdvhdwylpv .gt_indent_5 {
+#iijdrdfxep .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jdvhdwylpv .katex-display {
+#iijdrdfxep .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jdvhdwylpv div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iijdrdfxep div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1995,23 +1999,23 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="qnjrwhuisa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#qnjrwhuisa table {
+<div id="lmmqhlqajn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lmmqhlqajn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#qnjrwhuisa thead, #qnjrwhuisa tbody, #qnjrwhuisa tfoot, #qnjrwhuisa tr, #qnjrwhuisa td, #qnjrwhuisa th {
+#lmmqhlqajn thead, #lmmqhlqajn tbody, #lmmqhlqajn tfoot, #lmmqhlqajn tr, #lmmqhlqajn td, #lmmqhlqajn th {
   border-style: none;
 }
 
-#qnjrwhuisa p {
+#lmmqhlqajn p {
   margin: 0;
   padding: 0;
 }
 
-#qnjrwhuisa .gt_table {
+#lmmqhlqajn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2037,12 +2041,12 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-left-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_caption {
+#lmmqhlqajn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#qnjrwhuisa .gt_title {
+#lmmqhlqajn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2054,7 +2058,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-width: 0;
 }
 
-#qnjrwhuisa .gt_subtitle {
+#lmmqhlqajn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2066,7 +2070,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-width: 0;
 }
 
-#qnjrwhuisa .gt_heading {
+#lmmqhlqajn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2078,13 +2082,13 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_bottom_border {
+#lmmqhlqajn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_col_headings {
+#lmmqhlqajn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2099,7 +2103,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_col_heading {
+#lmmqhlqajn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2119,7 +2123,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#qnjrwhuisa .gt_column_spanner_outer {
+#lmmqhlqajn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2131,15 +2135,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 4px;
 }
 
-#qnjrwhuisa .gt_column_spanner_outer:first-child {
+#lmmqhlqajn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#qnjrwhuisa .gt_column_spanner_outer:last-child {
+#lmmqhlqajn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#qnjrwhuisa .gt_column_spanner {
+#lmmqhlqajn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2151,11 +2155,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   width: 100%;
 }
 
-#qnjrwhuisa .gt_spanner_row {
+#lmmqhlqajn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#qnjrwhuisa .gt_group_heading {
+#lmmqhlqajn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2181,7 +2185,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   text-align: left;
 }
 
-#qnjrwhuisa .gt_empty_group_heading {
+#lmmqhlqajn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2196,15 +2200,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: middle;
 }
 
-#qnjrwhuisa .gt_from_md > :first-child {
+#lmmqhlqajn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#qnjrwhuisa .gt_from_md > :last-child {
+#lmmqhlqajn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#qnjrwhuisa .gt_row {
+#lmmqhlqajn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2223,7 +2227,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#qnjrwhuisa .gt_stub {
+#lmmqhlqajn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2236,7 +2240,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#qnjrwhuisa .gt_stub_row_group {
+#lmmqhlqajn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2250,15 +2254,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: top;
 }
 
-#qnjrwhuisa .gt_row_group_first td {
+#lmmqhlqajn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#qnjrwhuisa .gt_row_group_first th {
+#lmmqhlqajn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#qnjrwhuisa .gt_summary_row {
+#lmmqhlqajn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2268,16 +2272,16 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#qnjrwhuisa .gt_first_summary_row {
+#lmmqhlqajn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_first_summary_row.thick {
+#lmmqhlqajn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#qnjrwhuisa .gt_last_summary_row {
+#lmmqhlqajn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2287,7 +2291,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_grand_summary_row {
+#lmmqhlqajn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2297,7 +2301,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#qnjrwhuisa .gt_first_grand_summary_row {
+#lmmqhlqajn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2307,7 +2311,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_last_grand_summary_row_top {
+#lmmqhlqajn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2317,11 +2321,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_striped {
+#lmmqhlqajn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#qnjrwhuisa .gt_table_body {
+#lmmqhlqajn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2330,7 +2334,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_footnotes {
+#lmmqhlqajn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2344,7 +2348,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_footnote {
+#lmmqhlqajn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2353,7 +2357,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#qnjrwhuisa .gt_sourcenotes {
+#lmmqhlqajn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2367,7 +2371,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#qnjrwhuisa .gt_sourcenote {
+#lmmqhlqajn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2375,72 +2379,72 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#qnjrwhuisa .gt_left {
+#lmmqhlqajn .gt_left {
   text-align: left;
 }
 
-#qnjrwhuisa .gt_center {
+#lmmqhlqajn .gt_center {
   text-align: center;
 }
 
-#qnjrwhuisa .gt_right {
+#lmmqhlqajn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#qnjrwhuisa .gt_font_normal {
+#lmmqhlqajn .gt_font_normal {
   font-weight: normal;
 }
 
-#qnjrwhuisa .gt_font_bold {
+#lmmqhlqajn .gt_font_bold {
   font-weight: bold;
 }
 
-#qnjrwhuisa .gt_font_italic {
+#lmmqhlqajn .gt_font_italic {
   font-style: italic;
 }
 
-#qnjrwhuisa .gt_super {
+#lmmqhlqajn .gt_super {
   font-size: 65%;
 }
 
-#qnjrwhuisa .gt_footnote_marks {
+#lmmqhlqajn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#qnjrwhuisa .gt_asterisk {
+#lmmqhlqajn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#qnjrwhuisa .gt_indent_1 {
+#lmmqhlqajn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#qnjrwhuisa .gt_indent_2 {
+#lmmqhlqajn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#qnjrwhuisa .gt_indent_3 {
+#lmmqhlqajn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#qnjrwhuisa .gt_indent_4 {
+#lmmqhlqajn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#qnjrwhuisa .gt_indent_5 {
+#lmmqhlqajn .gt_indent_5 {
   text-indent: 25px;
 }
 
-#qnjrwhuisa .katex-display {
+#lmmqhlqajn .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#qnjrwhuisa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#lmmqhlqajn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2543,23 +2547,23 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
 <span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="sovhndhrrg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#sovhndhrrg table {
+<div id="aaorzmarkp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aaorzmarkp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#sovhndhrrg thead, #sovhndhrrg tbody, #sovhndhrrg tfoot, #sovhndhrrg tr, #sovhndhrrg td, #sovhndhrrg th {
+#aaorzmarkp thead, #aaorzmarkp tbody, #aaorzmarkp tfoot, #aaorzmarkp tr, #aaorzmarkp td, #aaorzmarkp th {
   border-style: none;
 }
 
-#sovhndhrrg p {
+#aaorzmarkp p {
   margin: 0;
   padding: 0;
 }
 
-#sovhndhrrg .gt_table {
+#aaorzmarkp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2585,12 +2589,12 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-left-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_caption {
+#aaorzmarkp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#sovhndhrrg .gt_title {
+#aaorzmarkp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2602,7 +2606,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-width: 0;
 }
 
-#sovhndhrrg .gt_subtitle {
+#aaorzmarkp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2614,7 +2618,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-width: 0;
 }
 
-#sovhndhrrg .gt_heading {
+#aaorzmarkp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2626,13 +2630,13 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_bottom_border {
+#aaorzmarkp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_col_headings {
+#aaorzmarkp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2647,7 +2651,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_col_heading {
+#aaorzmarkp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2667,7 +2671,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#sovhndhrrg .gt_column_spanner_outer {
+#aaorzmarkp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2679,15 +2683,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 4px;
 }
 
-#sovhndhrrg .gt_column_spanner_outer:first-child {
+#aaorzmarkp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#sovhndhrrg .gt_column_spanner_outer:last-child {
+#aaorzmarkp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#sovhndhrrg .gt_column_spanner {
+#aaorzmarkp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2699,11 +2703,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   width: 100%;
 }
 
-#sovhndhrrg .gt_spanner_row {
+#aaorzmarkp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#sovhndhrrg .gt_group_heading {
+#aaorzmarkp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2729,7 +2733,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   text-align: left;
 }
 
-#sovhndhrrg .gt_empty_group_heading {
+#aaorzmarkp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2744,15 +2748,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: middle;
 }
 
-#sovhndhrrg .gt_from_md > :first-child {
+#aaorzmarkp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#sovhndhrrg .gt_from_md > :last-child {
+#aaorzmarkp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#sovhndhrrg .gt_row {
+#aaorzmarkp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2771,7 +2775,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   overflow-x: hidden;
 }
 
-#sovhndhrrg .gt_stub {
+#aaorzmarkp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2784,7 +2788,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#sovhndhrrg .gt_stub_row_group {
+#aaorzmarkp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2798,15 +2802,15 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   vertical-align: top;
 }
 
-#sovhndhrrg .gt_row_group_first td {
+#aaorzmarkp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#sovhndhrrg .gt_row_group_first th {
+#aaorzmarkp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#sovhndhrrg .gt_summary_row {
+#aaorzmarkp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2816,16 +2820,16 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#sovhndhrrg .gt_first_summary_row {
+#aaorzmarkp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_first_summary_row.thick {
+#aaorzmarkp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#sovhndhrrg .gt_last_summary_row {
+#aaorzmarkp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2835,7 +2839,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_grand_summary_row {
+#aaorzmarkp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2845,7 +2849,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#sovhndhrrg .gt_first_grand_summary_row {
+#aaorzmarkp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2855,7 +2859,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-top-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_last_grand_summary_row_top {
+#aaorzmarkp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2865,11 +2869,11 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_striped {
+#aaorzmarkp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#sovhndhrrg .gt_table_body {
+#aaorzmarkp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2878,7 +2882,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-bottom-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_footnotes {
+#aaorzmarkp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2892,7 +2896,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_footnote {
+#aaorzmarkp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2901,7 +2905,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#sovhndhrrg .gt_sourcenotes {
+#aaorzmarkp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2915,7 +2919,7 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   border-right-color: #D3D3D3;
 }
 
-#sovhndhrrg .gt_sourcenote {
+#aaorzmarkp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2923,72 +2927,72 @@ $ zooplankton_community_biomass_mgL   &lt;dbl&gt; 0.9987292, 4.9275362, 9.305721
   padding-right: 5px;
 }
 
-#sovhndhrrg .gt_left {
+#aaorzmarkp .gt_left {
   text-align: left;
 }
 
-#sovhndhrrg .gt_center {
+#aaorzmarkp .gt_center {
   text-align: center;
 }
 
-#sovhndhrrg .gt_right {
+#aaorzmarkp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#sovhndhrrg .gt_font_normal {
+#aaorzmarkp .gt_font_normal {
   font-weight: normal;
 }
 
-#sovhndhrrg .gt_font_bold {
+#aaorzmarkp .gt_font_bold {
   font-weight: bold;
 }
 
-#sovhndhrrg .gt_font_italic {
+#aaorzmarkp .gt_font_italic {
   font-style: italic;
 }
 
-#sovhndhrrg .gt_super {
+#aaorzmarkp .gt_super {
   font-size: 65%;
 }
 
-#sovhndhrrg .gt_footnote_marks {
+#aaorzmarkp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#sovhndhrrg .gt_asterisk {
+#aaorzmarkp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#sovhndhrrg .gt_indent_1 {
+#aaorzmarkp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#sovhndhrrg .gt_indent_2 {
+#aaorzmarkp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#sovhndhrrg .gt_indent_3 {
+#aaorzmarkp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#sovhndhrrg .gt_indent_4 {
+#aaorzmarkp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#sovhndhrrg .gt_indent_5 {
+#aaorzmarkp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#sovhndhrrg .katex-display {
+#aaorzmarkp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#sovhndhrrg div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aaorzmarkp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3096,23 +3100,23 @@ Water
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="rswwhmnzgd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rswwhmnzgd table {
+<div id="gcowmxupaz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gcowmxupaz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rswwhmnzgd thead, #rswwhmnzgd tbody, #rswwhmnzgd tfoot, #rswwhmnzgd tr, #rswwhmnzgd td, #rswwhmnzgd th {
+#gcowmxupaz thead, #gcowmxupaz tbody, #gcowmxupaz tfoot, #gcowmxupaz tr, #gcowmxupaz td, #gcowmxupaz th {
   border-style: none;
 }
 
-#rswwhmnzgd p {
+#gcowmxupaz p {
   margin: 0;
   padding: 0;
 }
 
-#rswwhmnzgd .gt_table {
+#gcowmxupaz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3138,12 +3142,12 @@ Water
   border-left-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_caption {
+#gcowmxupaz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rswwhmnzgd .gt_title {
+#gcowmxupaz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3155,7 +3159,7 @@ Water
   border-bottom-width: 0;
 }
 
-#rswwhmnzgd .gt_subtitle {
+#gcowmxupaz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3167,7 +3171,7 @@ Water
   border-top-width: 0;
 }
 
-#rswwhmnzgd .gt_heading {
+#gcowmxupaz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3179,13 +3183,13 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_bottom_border {
+#gcowmxupaz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_col_headings {
+#gcowmxupaz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3200,7 +3204,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_col_heading {
+#gcowmxupaz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3220,7 +3224,7 @@ Water
   overflow-x: hidden;
 }
 
-#rswwhmnzgd .gt_column_spanner_outer {
+#gcowmxupaz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3232,15 +3236,15 @@ Water
   padding-right: 4px;
 }
 
-#rswwhmnzgd .gt_column_spanner_outer:first-child {
+#gcowmxupaz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rswwhmnzgd .gt_column_spanner_outer:last-child {
+#gcowmxupaz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rswwhmnzgd .gt_column_spanner {
+#gcowmxupaz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3252,11 +3256,11 @@ Water
   width: 100%;
 }
 
-#rswwhmnzgd .gt_spanner_row {
+#gcowmxupaz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rswwhmnzgd .gt_group_heading {
+#gcowmxupaz .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3282,7 +3286,7 @@ Water
   text-align: left;
 }
 
-#rswwhmnzgd .gt_empty_group_heading {
+#gcowmxupaz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3297,15 +3301,15 @@ Water
   vertical-align: middle;
 }
 
-#rswwhmnzgd .gt_from_md > :first-child {
+#gcowmxupaz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rswwhmnzgd .gt_from_md > :last-child {
+#gcowmxupaz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rswwhmnzgd .gt_row {
+#gcowmxupaz .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3324,7 +3328,7 @@ Water
   overflow-x: hidden;
 }
 
-#rswwhmnzgd .gt_stub {
+#gcowmxupaz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3337,7 +3341,7 @@ Water
   padding-right: 5px;
 }
 
-#rswwhmnzgd .gt_stub_row_group {
+#gcowmxupaz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3351,15 +3355,15 @@ Water
   vertical-align: top;
 }
 
-#rswwhmnzgd .gt_row_group_first td {
+#gcowmxupaz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rswwhmnzgd .gt_row_group_first th {
+#gcowmxupaz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rswwhmnzgd .gt_summary_row {
+#gcowmxupaz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3369,16 +3373,16 @@ Water
   padding-right: 5px;
 }
 
-#rswwhmnzgd .gt_first_summary_row {
+#gcowmxupaz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_first_summary_row.thick {
+#gcowmxupaz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rswwhmnzgd .gt_last_summary_row {
+#gcowmxupaz .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3388,7 +3392,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_grand_summary_row {
+#gcowmxupaz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3398,7 +3402,7 @@ Water
   padding-right: 5px;
 }
 
-#rswwhmnzgd .gt_first_grand_summary_row {
+#gcowmxupaz .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3408,7 +3412,7 @@ Water
   border-top-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_last_grand_summary_row_top {
+#gcowmxupaz .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3418,11 +3422,11 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_striped {
+#gcowmxupaz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rswwhmnzgd .gt_table_body {
+#gcowmxupaz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3431,7 +3435,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_footnotes {
+#gcowmxupaz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3445,7 +3449,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_footnote {
+#gcowmxupaz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -3454,7 +3458,7 @@ Water
   padding-right: 5px;
 }
 
-#rswwhmnzgd .gt_sourcenotes {
+#gcowmxupaz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -3468,7 +3472,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#rswwhmnzgd .gt_sourcenote {
+#gcowmxupaz .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -3476,72 +3480,72 @@ Water
   padding-right: 5px;
 }
 
-#rswwhmnzgd .gt_left {
+#gcowmxupaz .gt_left {
   text-align: left;
 }
 
-#rswwhmnzgd .gt_center {
+#gcowmxupaz .gt_center {
   text-align: center;
 }
 
-#rswwhmnzgd .gt_right {
+#gcowmxupaz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rswwhmnzgd .gt_font_normal {
+#gcowmxupaz .gt_font_normal {
   font-weight: normal;
 }
 
-#rswwhmnzgd .gt_font_bold {
+#gcowmxupaz .gt_font_bold {
   font-weight: bold;
 }
 
-#rswwhmnzgd .gt_font_italic {
+#gcowmxupaz .gt_font_italic {
   font-style: italic;
 }
 
-#rswwhmnzgd .gt_super {
+#gcowmxupaz .gt_super {
   font-size: 65%;
 }
 
-#rswwhmnzgd .gt_footnote_marks {
+#gcowmxupaz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rswwhmnzgd .gt_asterisk {
+#gcowmxupaz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rswwhmnzgd .gt_indent_1 {
+#gcowmxupaz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rswwhmnzgd .gt_indent_2 {
+#gcowmxupaz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rswwhmnzgd .gt_indent_3 {
+#gcowmxupaz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rswwhmnzgd .gt_indent_4 {
+#gcowmxupaz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rswwhmnzgd .gt_indent_5 {
+#gcowmxupaz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rswwhmnzgd .katex-display {
+#gcowmxupaz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rswwhmnzgd div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gcowmxupaz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -3652,23 +3656,23 @@ Water
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the gt Table</span></span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>gt_measurements</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="pacpgrskot" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#pacpgrskot table {
+<div id="aisqpippey" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aisqpippey table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#pacpgrskot thead, #pacpgrskot tbody, #pacpgrskot tfoot, #pacpgrskot tr, #pacpgrskot td, #pacpgrskot th {
+#aisqpippey thead, #aisqpippey tbody, #aisqpippey tfoot, #aisqpippey tr, #aisqpippey td, #aisqpippey th {
   border-style: none;
 }
 
-#pacpgrskot p {
+#aisqpippey p {
   margin: 0;
   padding: 0;
 }
 
-#pacpgrskot .gt_table {
+#aisqpippey .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -3694,12 +3698,12 @@ Water
   border-left-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_caption {
+#aisqpippey .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#pacpgrskot .gt_title {
+#aisqpippey .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -3711,7 +3715,7 @@ Water
   border-bottom-width: 0;
 }
 
-#pacpgrskot .gt_subtitle {
+#aisqpippey .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -3723,7 +3727,7 @@ Water
   border-top-width: 0;
 }
 
-#pacpgrskot .gt_heading {
+#aisqpippey .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -3735,13 +3739,13 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_bottom_border {
+#aisqpippey .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_col_headings {
+#aisqpippey .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3756,7 +3760,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_col_heading {
+#aisqpippey .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3776,7 +3780,7 @@ Water
   overflow-x: hidden;
 }
 
-#pacpgrskot .gt_column_spanner_outer {
+#aisqpippey .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3788,15 +3792,15 @@ Water
   padding-right: 4px;
 }
 
-#pacpgrskot .gt_column_spanner_outer:first-child {
+#aisqpippey .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#pacpgrskot .gt_column_spanner_outer:last-child {
+#aisqpippey .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#pacpgrskot .gt_column_spanner {
+#aisqpippey .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -3808,11 +3812,11 @@ Water
   width: 100%;
 }
 
-#pacpgrskot .gt_spanner_row {
+#aisqpippey .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#pacpgrskot .gt_group_heading {
+#aisqpippey .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3838,7 +3842,7 @@ Water
   text-align: left;
 }
 
-#pacpgrskot .gt_empty_group_heading {
+#aisqpippey .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -3853,15 +3857,15 @@ Water
   vertical-align: middle;
 }
 
-#pacpgrskot .gt_from_md > :first-child {
+#aisqpippey .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#pacpgrskot .gt_from_md > :last-child {
+#aisqpippey .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#pacpgrskot .gt_row {
+#aisqpippey .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3880,7 +3884,7 @@ Water
   overflow-x: hidden;
 }
 
-#pacpgrskot .gt_stub {
+#aisqpippey .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3893,7 +3897,7 @@ Water
   padding-right: 5px;
 }
 
-#pacpgrskot .gt_stub_row_group {
+#aisqpippey .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -3907,15 +3911,15 @@ Water
   vertical-align: top;
 }
 
-#pacpgrskot .gt_row_group_first td {
+#aisqpippey .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#pacpgrskot .gt_row_group_first th {
+#aisqpippey .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#pacpgrskot .gt_summary_row {
+#aisqpippey .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3925,16 +3929,16 @@ Water
   padding-right: 5px;
 }
 
-#pacpgrskot .gt_first_summary_row {
+#aisqpippey .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_first_summary_row.thick {
+#aisqpippey .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#pacpgrskot .gt_last_summary_row {
+#aisqpippey .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3944,7 +3948,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_grand_summary_row {
+#aisqpippey .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -3954,7 +3958,7 @@ Water
   padding-right: 5px;
 }
 
-#pacpgrskot .gt_first_grand_summary_row {
+#aisqpippey .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3964,7 +3968,7 @@ Water
   border-top-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_last_grand_summary_row_top {
+#aisqpippey .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -3974,11 +3978,11 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_striped {
+#aisqpippey .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#pacpgrskot .gt_table_body {
+#aisqpippey .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -3987,7 +3991,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_footnotes {
+#aisqpippey .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4001,7 +4005,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_footnote {
+#aisqpippey .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4010,7 +4014,7 @@ Water
   padding-right: 5px;
 }
 
-#pacpgrskot .gt_sourcenotes {
+#aisqpippey .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4024,7 +4028,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#pacpgrskot .gt_sourcenote {
+#aisqpippey .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4032,72 +4036,72 @@ Water
   padding-right: 5px;
 }
 
-#pacpgrskot .gt_left {
+#aisqpippey .gt_left {
   text-align: left;
 }
 
-#pacpgrskot .gt_center {
+#aisqpippey .gt_center {
   text-align: center;
 }
 
-#pacpgrskot .gt_right {
+#aisqpippey .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#pacpgrskot .gt_font_normal {
+#aisqpippey .gt_font_normal {
   font-weight: normal;
 }
 
-#pacpgrskot .gt_font_bold {
+#aisqpippey .gt_font_bold {
   font-weight: bold;
 }
 
-#pacpgrskot .gt_font_italic {
+#aisqpippey .gt_font_italic {
   font-style: italic;
 }
 
-#pacpgrskot .gt_super {
+#aisqpippey .gt_super {
   font-size: 65%;
 }
 
-#pacpgrskot .gt_footnote_marks {
+#aisqpippey .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#pacpgrskot .gt_asterisk {
+#aisqpippey .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#pacpgrskot .gt_indent_1 {
+#aisqpippey .gt_indent_1 {
   text-indent: 5px;
 }
 
-#pacpgrskot .gt_indent_2 {
+#aisqpippey .gt_indent_2 {
   text-indent: 10px;
 }
 
-#pacpgrskot .gt_indent_3 {
+#aisqpippey .gt_indent_3 {
   text-indent: 15px;
 }
 
-#pacpgrskot .gt_indent_4 {
+#aisqpippey .gt_indent_4 {
   text-indent: 20px;
 }
 
-#pacpgrskot .gt_indent_5 {
+#aisqpippey .gt_indent_5 {
   text-indent: 25px;
 }
 
-#pacpgrskot .katex-display {
+#aisqpippey .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#pacpgrskot div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#aisqpippey div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4208,23 +4212,23 @@ Water
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>gt_measurements </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="jcfiklgrjl" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jcfiklgrjl table {
+<div id="ztbaoinehs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ztbaoinehs table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jcfiklgrjl thead, #jcfiklgrjl tbody, #jcfiklgrjl tfoot, #jcfiklgrjl tr, #jcfiklgrjl td, #jcfiklgrjl th {
+#ztbaoinehs thead, #ztbaoinehs tbody, #ztbaoinehs tfoot, #ztbaoinehs tr, #ztbaoinehs td, #ztbaoinehs th {
   border-style: none;
 }
 
-#jcfiklgrjl p {
+#ztbaoinehs p {
   margin: 0;
   padding: 0;
 }
 
-#jcfiklgrjl .gt_table {
+#ztbaoinehs .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4250,12 +4254,12 @@ Water
   border-left-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_caption {
+#ztbaoinehs .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jcfiklgrjl .gt_title {
+#ztbaoinehs .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4267,7 +4271,7 @@ Water
   border-bottom-width: 0;
 }
 
-#jcfiklgrjl .gt_subtitle {
+#ztbaoinehs .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4279,7 +4283,7 @@ Water
   border-top-width: 0;
 }
 
-#jcfiklgrjl .gt_heading {
+#ztbaoinehs .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4291,13 +4295,13 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_bottom_border {
+#ztbaoinehs .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_col_headings {
+#ztbaoinehs .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4312,7 +4316,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_col_heading {
+#ztbaoinehs .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4332,7 +4336,7 @@ Water
   overflow-x: hidden;
 }
 
-#jcfiklgrjl .gt_column_spanner_outer {
+#ztbaoinehs .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4344,15 +4348,15 @@ Water
   padding-right: 4px;
 }
 
-#jcfiklgrjl .gt_column_spanner_outer:first-child {
+#ztbaoinehs .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jcfiklgrjl .gt_column_spanner_outer:last-child {
+#ztbaoinehs .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jcfiklgrjl .gt_column_spanner {
+#ztbaoinehs .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -4364,11 +4368,11 @@ Water
   width: 100%;
 }
 
-#jcfiklgrjl .gt_spanner_row {
+#ztbaoinehs .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jcfiklgrjl .gt_group_heading {
+#ztbaoinehs .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4394,7 +4398,7 @@ Water
   text-align: left;
 }
 
-#jcfiklgrjl .gt_empty_group_heading {
+#ztbaoinehs .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4409,15 +4413,15 @@ Water
   vertical-align: middle;
 }
 
-#jcfiklgrjl .gt_from_md > :first-child {
+#ztbaoinehs .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jcfiklgrjl .gt_from_md > :last-child {
+#ztbaoinehs .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jcfiklgrjl .gt_row {
+#ztbaoinehs .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4436,7 +4440,7 @@ Water
   overflow-x: hidden;
 }
 
-#jcfiklgrjl .gt_stub {
+#ztbaoinehs .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4449,7 +4453,7 @@ Water
   padding-right: 5px;
 }
 
-#jcfiklgrjl .gt_stub_row_group {
+#ztbaoinehs .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -4463,15 +4467,15 @@ Water
   vertical-align: top;
 }
 
-#jcfiklgrjl .gt_row_group_first td {
+#ztbaoinehs .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jcfiklgrjl .gt_row_group_first th {
+#ztbaoinehs .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jcfiklgrjl .gt_summary_row {
+#ztbaoinehs .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4481,16 +4485,16 @@ Water
   padding-right: 5px;
 }
 
-#jcfiklgrjl .gt_first_summary_row {
+#ztbaoinehs .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_first_summary_row.thick {
+#ztbaoinehs .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jcfiklgrjl .gt_last_summary_row {
+#ztbaoinehs .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4500,7 +4504,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_grand_summary_row {
+#ztbaoinehs .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -4510,7 +4514,7 @@ Water
   padding-right: 5px;
 }
 
-#jcfiklgrjl .gt_first_grand_summary_row {
+#ztbaoinehs .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4520,7 +4524,7 @@ Water
   border-top-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_last_grand_summary_row_top {
+#ztbaoinehs .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4530,11 +4534,11 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_striped {
+#ztbaoinehs .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jcfiklgrjl .gt_table_body {
+#ztbaoinehs .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -4543,7 +4547,7 @@ Water
   border-bottom-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_footnotes {
+#ztbaoinehs .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4557,7 +4561,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_footnote {
+#ztbaoinehs .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -4566,7 +4570,7 @@ Water
   padding-right: 5px;
 }
 
-#jcfiklgrjl .gt_sourcenotes {
+#ztbaoinehs .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -4580,7 +4584,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#jcfiklgrjl .gt_sourcenote {
+#ztbaoinehs .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -4588,72 +4592,72 @@ Water
   padding-right: 5px;
 }
 
-#jcfiklgrjl .gt_left {
+#ztbaoinehs .gt_left {
   text-align: left;
 }
 
-#jcfiklgrjl .gt_center {
+#ztbaoinehs .gt_center {
   text-align: center;
 }
 
-#jcfiklgrjl .gt_right {
+#ztbaoinehs .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jcfiklgrjl .gt_font_normal {
+#ztbaoinehs .gt_font_normal {
   font-weight: normal;
 }
 
-#jcfiklgrjl .gt_font_bold {
+#ztbaoinehs .gt_font_bold {
   font-weight: bold;
 }
 
-#jcfiklgrjl .gt_font_italic {
+#ztbaoinehs .gt_font_italic {
   font-style: italic;
 }
 
-#jcfiklgrjl .gt_super {
+#ztbaoinehs .gt_super {
   font-size: 65%;
 }
 
-#jcfiklgrjl .gt_footnote_marks {
+#ztbaoinehs .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jcfiklgrjl .gt_asterisk {
+#ztbaoinehs .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jcfiklgrjl .gt_indent_1 {
+#ztbaoinehs .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jcfiklgrjl .gt_indent_2 {
+#ztbaoinehs .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jcfiklgrjl .gt_indent_3 {
+#ztbaoinehs .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jcfiklgrjl .gt_indent_4 {
+#ztbaoinehs .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jcfiklgrjl .gt_indent_5 {
+#ztbaoinehs .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jcfiklgrjl .katex-display {
+#ztbaoinehs .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jcfiklgrjl div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ztbaoinehs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -4763,23 +4767,23 @@ Water
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>gt_measurements <span class="sc">|&gt;</span> <span class="fu">opt_stylize</span>(<span class="at">style =</span> <span class="dv">6</span>, <span class="at">color =</span> <span class="st">'gray'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
-<div id="lqqnvocodc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#lqqnvocodc table {
+<div id="zsuuacacew" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#zsuuacacew table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#lqqnvocodc thead, #lqqnvocodc tbody, #lqqnvocodc tfoot, #lqqnvocodc tr, #lqqnvocodc td, #lqqnvocodc th {
+#zsuuacacew thead, #zsuuacacew tbody, #zsuuacacew tfoot, #zsuuacacew tr, #zsuuacacew td, #zsuuacacew th {
   border-style: none;
 }
 
-#lqqnvocodc p {
+#zsuuacacew p {
   margin: 0;
   padding: 0;
 }
 
-#lqqnvocodc .gt_table {
+#zsuuacacew .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -4805,12 +4809,12 @@ Water
   border-left-color: #D3D3D3;
 }
 
-#lqqnvocodc .gt_caption {
+#zsuuacacew .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#lqqnvocodc .gt_title {
+#zsuuacacew .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -4822,7 +4826,7 @@ Water
   border-bottom-width: 0;
 }
 
-#lqqnvocodc .gt_subtitle {
+#zsuuacacew .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -4834,7 +4838,7 @@ Water
   border-top-width: 0;
 }
 
-#lqqnvocodc .gt_heading {
+#zsuuacacew .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -4846,13 +4850,13 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#lqqnvocodc .gt_bottom_border {
+#zsuuacacew .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_col_headings {
+#zsuuacacew .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -4867,7 +4871,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#lqqnvocodc .gt_col_heading {
+#zsuuacacew .gt_col_heading {
   color: #FFFFFF;
   background-color: #5F5F5F;
   font-size: 100%;
@@ -4887,7 +4891,7 @@ Water
   overflow-x: hidden;
 }
 
-#lqqnvocodc .gt_column_spanner_outer {
+#zsuuacacew .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #5F5F5F;
   font-size: 100%;
@@ -4899,15 +4903,15 @@ Water
   padding-right: 4px;
 }
 
-#lqqnvocodc .gt_column_spanner_outer:first-child {
+#zsuuacacew .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lqqnvocodc .gt_column_spanner_outer:last-child {
+#zsuuacacew .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lqqnvocodc .gt_column_spanner {
+#zsuuacacew .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #5F5F5F;
@@ -4919,11 +4923,11 @@ Water
   width: 100%;
 }
 
-#lqqnvocodc .gt_spanner_row {
+#zsuuacacew .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#lqqnvocodc .gt_group_heading {
+#zsuuacacew .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4949,7 +4953,7 @@ Water
   text-align: left;
 }
 
-#lqqnvocodc .gt_empty_group_heading {
+#zsuuacacew .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -4964,15 +4968,15 @@ Water
   vertical-align: middle;
 }
 
-#lqqnvocodc .gt_from_md > :first-child {
+#zsuuacacew .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lqqnvocodc .gt_from_md > :last-child {
+#zsuuacacew .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lqqnvocodc .gt_row {
+#zsuuacacew .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -4991,7 +4995,7 @@ Water
   overflow-x: hidden;
 }
 
-#lqqnvocodc .gt_stub {
+#zsuuacacew .gt_stub {
   color: #333333;
   background-color: #D5D5D5;
   font-size: 100%;
@@ -5004,7 +5008,7 @@ Water
   padding-right: 5px;
 }
 
-#lqqnvocodc .gt_stub_row_group {
+#zsuuacacew .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5018,15 +5022,15 @@ Water
   vertical-align: top;
 }
 
-#lqqnvocodc .gt_row_group_first td {
+#zsuuacacew .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lqqnvocodc .gt_row_group_first th {
+#zsuuacacew .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#lqqnvocodc .gt_summary_row {
+#zsuuacacew .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5036,16 +5040,16 @@ Water
   padding-right: 5px;
 }
 
-#lqqnvocodc .gt_first_summary_row {
+#zsuuacacew .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_first_summary_row.thick {
+#zsuuacacew .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lqqnvocodc .gt_last_summary_row {
+#zsuuacacew .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5055,7 +5059,7 @@ Water
   border-bottom-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_grand_summary_row {
+#zsuuacacew .gt_grand_summary_row {
   color: #333333;
   background-color: #D5D5D5;
   text-transform: inherit;
@@ -5065,7 +5069,7 @@ Water
   padding-right: 5px;
 }
 
-#lqqnvocodc .gt_first_grand_summary_row {
+#zsuuacacew .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5075,7 +5079,7 @@ Water
   border-top-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_last_grand_summary_row_top {
+#zsuuacacew .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5085,11 +5089,11 @@ Water
   border-bottom-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_striped {
+#zsuuacacew .gt_striped {
   background-color: #F4F4F4;
 }
 
-#lqqnvocodc .gt_table_body {
+#zsuuacacew .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #5F5F5F;
@@ -5098,7 +5102,7 @@ Water
   border-bottom-color: #5F5F5F;
 }
 
-#lqqnvocodc .gt_footnotes {
+#zsuuacacew .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5112,7 +5116,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#lqqnvocodc .gt_footnote {
+#zsuuacacew .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5121,7 +5125,7 @@ Water
   padding-right: 5px;
 }
 
-#lqqnvocodc .gt_sourcenotes {
+#zsuuacacew .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5135,7 +5139,7 @@ Water
   border-right-color: #D3D3D3;
 }
 
-#lqqnvocodc .gt_sourcenote {
+#zsuuacacew .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5143,72 +5147,72 @@ Water
   padding-right: 5px;
 }
 
-#lqqnvocodc .gt_left {
+#zsuuacacew .gt_left {
   text-align: left;
 }
 
-#lqqnvocodc .gt_center {
+#zsuuacacew .gt_center {
   text-align: center;
 }
 
-#lqqnvocodc .gt_right {
+#zsuuacacew .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lqqnvocodc .gt_font_normal {
+#zsuuacacew .gt_font_normal {
   font-weight: normal;
 }
 
-#lqqnvocodc .gt_font_bold {
+#zsuuacacew .gt_font_bold {
   font-weight: bold;
 }
 
-#lqqnvocodc .gt_font_italic {
+#zsuuacacew .gt_font_italic {
   font-style: italic;
 }
 
-#lqqnvocodc .gt_super {
+#zsuuacacew .gt_super {
   font-size: 65%;
 }
 
-#lqqnvocodc .gt_footnote_marks {
+#zsuuacacew .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#lqqnvocodc .gt_asterisk {
+#zsuuacacew .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lqqnvocodc .gt_indent_1 {
+#zsuuacacew .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lqqnvocodc .gt_indent_2 {
+#zsuuacacew .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lqqnvocodc .gt_indent_3 {
+#zsuuacacew .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lqqnvocodc .gt_indent_4 {
+#zsuuacacew .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lqqnvocodc .gt_indent_5 {
+#zsuuacacew .gt_indent_5 {
   text-indent: 25px;
 }
 
-#lqqnvocodc .katex-display {
+#zsuuacacew .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#lqqnvocodc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#zsuuacacew div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
