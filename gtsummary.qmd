@@ -145,7 +145,7 @@ data |>
 
 **2)** Default tests will vary based on data type.
 
-We don't specify a test, `add_p()` will use the [default tests](The default test used in `add_p()` primarily depends on these factors:), which depend on whether the data is continuous or categorical, how many categories, etc.
+We don't specify a test, `add_p()` will use the [default tests](https://www.danieldsjoberg.com/gtsummary/reference/add_p.tbl_summary.html), which depend on whether the data is continuous or categorical, how many categories, etc.
 
 If we don't specify anova, the analysis will default to a Kruskal-Wallis rank sum test.
 
