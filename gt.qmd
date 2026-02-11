@@ -15,7 +15,6 @@ An `gt` object as various elements. These include the table **header**, the **st
 
 Checkout the `gt` website for more information: <https://gt.rstudio.com/articles/gt.html>
 
-
 # Our example 
 
 We are going to reproduce some of the tables of this paper _Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs_ <https://doi.org/10.1371/journal.pone.0140464> and create new ones using the data archived on Dryad <https://doi.org/10.5061/dryad.6tn4h>.
@@ -68,6 +67,8 @@ data_air <- data |>
 data_air
 ```
 
+
+
 ## Now let's make this a nice table
 
 ```{r}
@@ -79,6 +80,16 @@ gt_air <-
 gt_air
 ```
 
+## Add a Title
+```{r}
+#| message: FALSE
+
+gt_air |> 
+  tab_header(
+    title = "Average measurements per lake and year",
+    subtitle = "major reservoirs in San Diego County"
+  ) 
+```
 
 ## Working with a more complex table
 
