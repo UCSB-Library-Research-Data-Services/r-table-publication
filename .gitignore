@@ -11,3 +11,5 @@ _site/
 
 # Live coding files
 gtsummary_live.R
+
+_freeze/
