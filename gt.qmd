@@ -62,8 +62,7 @@ Now let's create a summary table of the average air temperature for each basin
 data_air <- data |>
   select(year, lake, air_temp_c) |>
   group_by(year, lake) |>
-    summarise(average_air_temp = mean(air_temp_c),
-              groups = "drop_last")
+    summarise(average_air_temp = mean(air_temp_c))
 
 data_air
 ```
