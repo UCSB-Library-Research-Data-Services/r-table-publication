@@ -8,7 +8,7 @@ Note that this session assumes a working knowledge of R; we will dive straight i
 
 **Workshop time**: 2/11/2026, 2:00-3:00pm
 
-**Workshop registration**: https://ucsd.zoom.us/meeting/register/U2EwnvgUQiGL9VkivKWK-Q#/registration
+**Workshop registration**: <https://ucsd.zoom.us/meeting/register/U2EwnvgUQiGL9VkivKWK-Q#/registration>
 
 **Instructors**: Stephanie Labou & Julien Brun
 
