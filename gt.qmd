@@ -5,8 +5,7 @@ title: "Beautiful Tables with `gt`"
 ## A few words on the `gt` package
 
 
-Wuth `gt` can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow:
-
+With `gt` can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beatiful table:
 
 ![https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg](https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg)
 
@@ -14,14 +13,15 @@ An `gt` object as various elements. These include the table **header**, the **st
 
 ![https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg](https://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg)
 
-Checkout the `gt` website to know more: <https://gt.rstudio.com/articles/gt.html>
+Checkout the `gt` website for more information: <https://gt.rstudio.com/articles/gt.html>
 
 
 # Our example 
 
-We are going to reproduce some of the tables of this paper _Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs_ <https://doi.org/10.1371/journal.pone.0140464>
+We are going to reproduce some of the tables of this paper _Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs_ <https://doi.org/10.1371/journal.pone.0140464> and create new ones using the data archived on Dryad <https://doi.org/10.5061/dryad.6tn4h>.
 
-## Load the packages we need
+
+## Load the libraries
 
 ```{r label='install_load'}
 #| message: FALSE
