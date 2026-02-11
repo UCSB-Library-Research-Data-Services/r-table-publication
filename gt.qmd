@@ -5,7 +5,7 @@ title: "Beautiful Tables with `gt`"
 ## A few words on the `gt` package
 
 
-With `gt` can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:
+With `gt` you can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:
 
 ![https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg](https://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg)
 
