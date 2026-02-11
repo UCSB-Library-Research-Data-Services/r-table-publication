@@ -38,7 +38,6 @@ Let's have a look at the first rows of our dataset, but this time we are going t
 
 ```{r}
 
-  
 ```
 
 ## A simple table
@@ -61,23 +60,29 @@ data_air
 ## Now let's make this a nice table
 
 ```{r}
-gt_air <- 
+gt_air <- data_air |> 
+  gt() 
+
+gt_air
 ```
 
 ## Add a Title
+
 ```{r}
 #| message: FALSE
 
-gt_air |> 
+
   
 ```
+
+
 
 ## Working with a more complex table
 
 ```{r}
 #| message: FALSE
 
-data_measurements <- temp_basin <- data |>
+data_measurements <- data |>
   select(year, lake, air_temp_c, pco2_atmosphere_ppm, h2o_temp_c, ph, pco2_water_ppm) |>
   group_by(year, lake) |>
     summarise(avg_air_temp = mean(air_temp_c),
@@ -90,6 +95,8 @@ data_measurements <- temp_basin <- data |>
 data_measurements |>  gt()
 ```
 
+
+
 ## Add better column names
 
 ```{r}
@@ -99,7 +106,7 @@ gt_measurements <- data_measurements |>
     avg_air_temp = "Air Temp (C)",
     avg_pco2_atmosphere_ppm = "Air pC02 (ppm)",
     avg_h2o_temp_c = "Water Temp (C)",
-    avg_ph = 'Water pH',
+    avg_ph = "Water pH",
     avg_pco2_water_ppm = "Water pC02 (ppm)"
   )
 
@@ -112,22 +119,16 @@ gt_measurements
 ## Adding headers for multiple columns
 
 ```{r}
-gt_measurements <- gt_measurements |>
+gt_measurements <- data_measurements |>
+  gt() |> 
   tab_spanner(
-    label = md("**Air**"),
+    label = "Air",
     columns = c(avg_air_temp, avg_pco2_atmosphere_ppm)
   ) |>
   tab_spanner(
-    label = md("**Water**"),
+    label = "Water",
     columns = c(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)
-  ) |>
-  cols_label(
-    avg_air_temp = "Temp (C)",
-    avg_pco2_atmosphere_ppm = "pC02 (ppm)",
-    avg_h2o_temp_c = "Temp (C)",
-    avg_ph = 'pH',
-    avg_pco2_water_ppm = "pC02 (ppm)"
-  )
+  ) 
 
 # Show the gt Table
 gt_measurements
@@ -158,7 +159,7 @@ gt_measurements
 gt_measurements <- gt_measurements |>
   tab_header(
     title = "Average measurements per lake and year",
-    subtitle = "major reservoirs in San Diego County"
+    subtitle = "Major reservoirs in San Diego County"
   ) |>
  tab_source_note(
     source_note = md("Source: _Adamczyk EM, Shurin JB (2015) Seasonal Changes in Plankton Food Web Structure and Carbon Dioxide Flux from Southern California Reservoirs. PLoS ONE 10(10): e0140464. <https://doi.org/10.1371/journal.pone.0140464>_")
