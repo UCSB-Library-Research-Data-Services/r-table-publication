@@ -93,7 +93,6 @@ gt_air |>
 
 ## Working with a more complex table
 
-
 ```{r}
 #| message: FALSE
 
@@ -113,8 +112,7 @@ data_measurements |>  gt()
 ## Add better column names
 
 ```{r}
-gt_measurements <-
-  data_measurements |>
+gt_measurements <- data_measurements |>
   gt() |>
   cols_label(
     avg_air_temp = "Air Temp (C)",
@@ -133,15 +131,13 @@ gt_measurements
 ## Adding headers for multiple columns
 
 ```{r}
-gt_measurements <-
-  data_measurements |>
-  gt() |>
+gt_measurements <- gt_measurements |>
   tab_spanner(
-    label = "Air",
+    label = md("**Air**"),
     columns = c(avg_air_temp, avg_pco2_atmosphere_ppm)
   ) |>
   tab_spanner(
-    label = "Water",
+    label = md("**Water**"),
     columns = c(avg_h2o_temp_c, avg_ph, avg_pco2_water_ppm)
   ) |>
   cols_label(
@@ -192,16 +188,6 @@ gt_measurements <- gt_measurements |>
 gt_measurements
 ```
 
-
-
-## More styling on sub headers
-
-
-
-
-```{r}
-gt_measurements 
-```
 
 ## Styling
 
