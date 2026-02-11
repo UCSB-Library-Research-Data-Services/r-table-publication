@@ -96,7 +96,7 @@ gt_air |>
 ```{r}
 #| message: FALSE
 
-data_measurements <- temp_basin <- data |>
+data_measurements <- data |>
   select(year, lake, air_temp_c, pco2_atmosphere_ppm, h2o_temp_c, ph, pco2_water_ppm) |>
   group_by(year, lake) |>
     summarise(avg_air_temp = mean(air_temp_c),
