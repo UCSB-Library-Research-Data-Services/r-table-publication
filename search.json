@@ -39,14 +39,14 @@
     "href": "gt.html",
     "title": "Beautiful Tables with gt",
     "section": "",
-    "text": "With gt can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg\n\n\nAn gt object as various elements. These include the table header, the stub, the column labels and spanner column labels, the table body, and the table footer.\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg\n\n\nCheckout the gt website for more information: https://gt.rstudio.com/articles/gt.html"
+    "text": "With gt you can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg\n\n\nAn gt object as various elements. These include the table header, the stub, the column labels and spanner column labels, the table body, and the table footer.\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg\n\n\nCheckout the gt website for more information: https://gt.rstudio.com/articles/gt.html"
   },
   {
     "objectID": "gt.html#a-few-words-on-the-gt-package",
     "href": "gt.html#a-few-words-on-the-gt-package",
     "title": "Beautiful Tables with gt",
     "section": "",
-    "text": "With gt can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg\n\n\nAn gt object as various elements. These include the table header, the stub, the column labels and spanner column labels, the table body, and the table footer.\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg\n\n\nCheckout the gt website for more information: https://gt.rstudio.com/articles/gt.html"
+    "text": "With gt you can construct a wide variety of useful tables with a cohesive set of table parts. Here is the main workflow to transform a data frame into a beautiful table:\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_workflow_diagram.svg\n\n\nAn gt object as various elements. These include the table header, the stub, the column labels and spanner column labels, the table body, and the table footer.\n\n\n\nhttps://gt.rstudio.com/reference/figures/gt_parts_of_a_table.svg\n\n\nCheckout the gt website for more information: https://gt.rstudio.com/articles/gt.html"
   },
   {
     "objectID": "gt.html#load-the-libraries",
