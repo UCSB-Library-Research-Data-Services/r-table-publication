@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/1114028144.svg)](https://doi.org/10.5281/zenodo.18675451)
+
 # Publication ready tables in R
 
 Are you tired of spending your time manually formatting tables for article submission? Does the idea of pasting regression coefficients from R to Excel make you wince? This session will demo how to make publication-quality (and reproducible!) data tables in R. We'll use the `gt` package to showcase options for table customization and the `gtsummary` package for ways to combine model outputs with table creation. 
